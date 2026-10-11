@@ -127,8 +127,7 @@
     .steps li p { margin: 0; color: var(--ink-2); font-size: .96rem; }
 
     /* About */
-    .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: center; }
-    .portrait { aspect-ratio: 4 / 5; border-radius: 18px; background: linear-gradient(160deg, #d9d0bf, #c8bda8); border: 1px solid var(--line); display: grid; place-items: center; color: var(--ink-2); font-size: .9rem; max-width: 360px; }
+    .about-grid { max-width: 720px; }
 
     /* FAQ */
     details { border-top: 1px solid var(--line); padding: 16px 0; }
@@ -160,12 +159,11 @@
     @media (max-width: 860px) {
       section { padding: 56px 0; }
       .hero { padding: 48px 0 40px; }
-      .hero-grid, .offer-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 36px; }
+      .hero-grid, .offer-grid, .contact-grid { grid-template-columns: 1fr; gap: 36px; }
       .problem-grid { grid-template-columns: 1fr; gap: 18px; }
       .steps ol { grid-template-columns: 1fr 1fr; }
       .nav ul { display: none; }
       .phone { width: 250px; }
-      .portrait { max-width: 260px; }
     }
     @media (max-width: 520px) {
       .steps ol { grid-template-columns: 1fr; }
@@ -283,9 +281,6 @@
 
   <section id="apropos">
     <div class="wrap about-grid">
-      <div>
-        <div class="portrait">Photo à venir</div>
-      </div>
       <div>
         <div class="eyebrow">Qui je suis</div>
         <h2>Je m'appelle Prénom, et je fais des sites pour les gens qui n'ont pas le temps d'en faire.</h2>
