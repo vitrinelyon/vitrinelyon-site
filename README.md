@@ -8,4 +8,4 @@ Site vitrine de l'activité. HTML statique, aucune dépendance, aucun build.
 
 Déployé sur Cloudflare Pages depuis la branche `main`. Chaque push met le site à jour.
 
-Formulaire : Web3Forms. Remplacer `WEB3FORMS_ACCESS_KEY` dans `index.html` par la clé obtenue sur web3forms.com avec l'adresse contact.vitrinelyon@gmail.com.
+Formulaire : Web3Forms, clé configurée dans `index.html` (compte contact.vitrinelyon@gmail.com).
