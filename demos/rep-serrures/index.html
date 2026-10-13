@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Rep-serrures — Serrurier à Lyon 6e, entreprise familiale</title>
+  <meta name="description" content="Rep-serrures, serrurerie familiale au 103 rue Duguesclin, Lyon 6e. Dépannage, remplacement de serrure, blindage de porte, boîtes aux lettres, reproduction de clés en boutique. 333 avis Google, note 5,0.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f4ef;
+      --paper: #ffffff;
+      --ink: #1b1f24;
+      --ink-2: #4b535c;
+      --muted: #7a838c;
+      --line: #e3ded4;
+      --navy: #1e2a3a;
+      --navy-2: #27364a;
+      --brass: #b8862b;
+      --brass-2: #d9a441;
+      --ok: #2e7d4f;
+      --star: #e8a317;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3 { font-family: "Source Serif 4", Georgia, serif; line-height: 1.15; margin: 0 0 .45em; letter-spacing: -0.01em; }
+    h1 { font-size: clamp(2.1rem, 5.4vw, 3.5rem); font-weight: 700; }
+    h2 { font-size: clamp(1.6rem, 3.4vw, 2.3rem); font-weight: 700; }
+    h3 { font-size: 1.15rem; font-weight: 600; }
+    p { margin: 0 0 1em; }
+    a { color: inherit; }
+    .wrap { width: min(1080px, 100% - 32px); margin-inline: auto; }
+    section { padding: 68px 0; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .12em; font-size: .76rem; font-weight: 700; color: var(--brass); margin-bottom: 12px; }
+    .lead { font-size: 1.12rem; color: var(--ink-2); max-width: 38em; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 13px 22px; border-radius: 10px; font-weight: 700; text-decoration: none; border: 2px solid var(--navy); color: var(--navy); background: transparent; font-size: 1rem; transition: transform .12s ease, background .12s ease; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn.primary { background: var(--brass); border-color: var(--brass); color: #fff; }
+    .btn.primary:hover { background: #a2751f; }
+    .btn.light { border-color: #fff; color: #fff; }
+    .btn svg { width: 20px; height: 20px; flex: none; }
+
+    .demo-banner { background: #fff5d6; color: #5a4200; font-size: .86rem; text-align: center; padding: 8px 16px; border-bottom: 1px solid #f0dca0; }
+    .demo-banner a { font-weight: 600; }
+
+    header { position: sticky; top: 0; z-index: 10; background: rgba(246,244,239,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font-family: "Source Serif 4", serif; font-weight: 700; font-size: 1.25rem; white-space: nowrap; }
+    .brand .mark { width: 36px; height: 36px; border-radius: 9px; background: var(--navy); display: grid; place-items: center; }
+    .brand .mark svg { width: 22px; height: 22px; }
+    .nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; }
+    .nav ul a { text-decoration: none; color: var(--ink-2); font-weight: 600; font-size: .95rem; }
+    .nav ul a:hover { color: var(--ink); }
+    .nav .btn { padding: 10px 16px; font-size: .95rem; }
+
+    .hero { background: var(--navy); color: #fff; padding: 72px 0 64px; position: relative; overflow: hidden; }
+    .hero::after { content: ""; position: absolute; right: -120px; top: -80px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(217,164,65,.28), transparent 60%); pointer-events: none; }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; position: relative; }
+    .hero .eyebrow { color: var(--brass-2); }
+    .hero .lead { color: #c9d1dc; }
+    .hero .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+    .hero .status { margin-top: 22px; display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); padding: 8px 14px; border-radius: 999px; font-size: .92rem; }
+    .hero .status .dot { width: 9px; height: 9px; border-radius: 50%; background: #58d68d; box-shadow: 0 0 0 4px rgba(88,214,141,.18); }
+    .trust { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); border-radius: 18px; padding: 28px; }
+    .trust .score { display: flex; align-items: baseline; gap: 12px; }
+    .trust .score b { font-family: "Source Serif 4", serif; font-size: 3.2rem; line-height: 1; }
+    .trust .stars { color: var(--star); font-size: 1.3rem; letter-spacing: 2px; }
+    .trust .n { color: #c9d1dc; }
+    .trust ul { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 10px; }
+    .trust li { display: flex; gap: 10px; align-items: flex-start; color: #e6ebf1; font-size: .98rem; }
+    .trust li::before { content: "✓"; color: var(--brass-2); font-weight: 700; flex: none; }
+    .trust .tags { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .trust .tags span { background: rgba(255,255,255,.1); padding: 4px 10px; border-radius: 999px; font-size: .82rem; color: #e6ebf1; }
+
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+    .card { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+    .card .ico { width: 44px; height: 44px; border-radius: 10px; background: #f1ecdf; display: grid; place-items: center; margin-bottom: 14px; }
+    .card .ico svg { width: 24px; height: 24px; }
+    .card p { margin: 0; color: var(--ink-2); font-size: .97rem; }
+
+    .urgence { background: var(--brass); color: #fff; padding: 36px 0; }
+    .urgence .row { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    .urgence h2 { font-size: 1.5rem; margin: 0 0 4px; }
+    .urgence p { margin: 0; color: #fff4dd; }
+
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .why ul { list-style: none; padding: 0; margin: 20px 0 0; }
+    .why li { padding: 14px 0; border-bottom: 1px solid var(--line); display: grid; gap: 2px; }
+    .why li b { font-size: 1.02rem; }
+    .why li span { color: var(--ink-2); font-size: .96rem; }
+    .photo-panel { border-radius: 18px; background: linear-gradient(160deg, var(--navy-2), var(--navy)); aspect-ratio: 4 / 3; display: grid; place-items: center; position: relative; overflow: hidden; }
+    .photo-panel svg { width: 46%; height: auto; opacity: .9; }
+    .photo-panel::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 70% 20%, rgba(217,164,65,.25), transparent 55%); }
+
+    .reviews { background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 32px; }
+    .review { background: var(--bg); border: 1px solid var(--line); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px; }
+    .review .stars { color: var(--star); letter-spacing: 2px; }
+    .review q { quotes: "« " " »"; color: var(--ink); font-size: 1rem; }
+    .review .who { color: var(--muted); font-size: .88rem; margin-top: auto; }
+    .reviews .more { margin-top: 26px; }
+
+    .infos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+    .hours { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    .hours td { padding: 9px 0; border-bottom: 1px solid var(--line); font-size: .98rem; }
+    .hours td:last-child { text-align: right; color: var(--ink-2); }
+    .hours tr.closed td:last-child { color: var(--muted); }
+    .map { width: 100%; height: 320px; border-radius: 16px; display: block; border: 1px solid var(--line); }
+    .addr { margin-top: 18px; display: grid; gap: 6px; font-size: .98rem; }
+    .addr b { font-size: 1.05rem; }
+
+    footer { background: var(--navy); color: #c9d1dc; padding: 36px 0; font-size: .9rem; }
+    footer .row { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    footer a { color: #fff; }
+
+    @media (max-width: 880px) {
+      section { padding: 52px 0; }
+      .hero { padding: 48px 0 44px; }
+      .hero-grid, .why-grid, .infos-grid { grid-template-columns: 1fr; gap: 32px; }
+      .services-grid, .reviews-grid { grid-template-columns: 1fr; gap: 14px; }
+      .nav ul { display: none; }
+      .trust .score b { font-size: 2.6rem; }
+    }
+    @media (min-width: 881px) and (max-width: 1024px) {
+      .services-grid, .reviews-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="demo-banner">Démonstration réalisée par <a href="https://vitrinelyon.fr/">Vitrine Lyon</a>, non contractuelle. Informations issues de la fiche Google publique de l'établissement.</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Rep-serrures, accueil">
+      <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="#d9a441" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="12" r="4"/><path d="M12 12h9M18 12v3M21 12v2"/></svg></span>
+      Rep-serrures
+    </a>
+    <nav aria-label="Navigation">
+      <ul>
+        <li><a href="#services">Prestations</a></li>
+        <li><a href="#pourquoi">Pourquoi nous</a></li>
+        <li><a href="#avis">Avis</a></li>
+        <li><a href="#boutique">Boutique</a></li>
+      </ul>
+    </nav>
+    <a class="btn primary" href="tel:+33478520785">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.8 2.1z"/></svg>
+      04 78 52 07 85
+    </a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Serrurerie familiale · Lyon 6e</div>
+        <h1>Une serrure qui lâche, une porte à sécuriser, une clé à refaire. On s'en occupe.</h1>
+        <p class="lead">Rep-serrures est une entreprise familiale installée au 103 rue Duguesclin, à deux pas de Foch. Dépannage, remplacement de serrures, blindage de porte et boutique de reproduction de clés, avec le travail propre et bien fait que nos clients décrivent dans 333 avis.</p>
+        <div class="cta">
+          <a class="btn primary" href="tel:+33478520785">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.8 2.1z"/></svg>
+            Appeler le 04 78 52 07 85
+          </a>
+          <a class="btn light" href="https://www.google.com/maps/dir/?api=1&destination=103+Rue+Duguesclin+69006+Lyon" target="_blank" rel="noopener">Itinéraire vers la boutique</a>
+        </div>
+        <div class="status" id="status"><span class="dot"></span><span id="status-text">Boutique ouverte du lundi au vendredi</span></div>
+      </div>
+      <aside class="trust" aria-label="Avis clients">
+        <div class="score"><b>5,0</b><div><div class="stars">★★★★★</div><div class="n">333 avis Google</div></div></div>
+        <ul>
+          <li>Entreprise familiale, accueil en boutique</li>
+          <li>Dépannage rapide à Lyon et alentours</li>
+          <li>Devis clair avant toute intervention</li>
+        </ul>
+        <div class="tags"><span>entreprise familiale</span><span>professionnalisme</span><span>artisan</span><span>qualité</span></div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="eyebrow">Nos prestations</div>
+      <h2>De l'urgence du soir à la porte blindée.</h2>
+      <p class="lead">Un seul interlocuteur, de la boutique au chantier.</p>
+      <div class="services-grid">
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#1e2a3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><circle cx="15" cy="12" r="1.2"/></svg></div>
+          <h3>Dépannage et ouverture de porte</h3>
+          <p>Porte claquée, clé cassée dans le barillet, serrure bloquée. Intervention rapide, sans casse quand c'est possible.</p>
+        </div>
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#1e2a3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="12" r="4"/><path d="M12 12h9M18 12v3M21 12v2"/></svg></div>
+          <h3>Remplacement de serrure</h3>
+          <p>Serrures et cylindres toutes marques, en applique ou à encastrer, avec conseil sur le niveau de sécurité adapté.</p>
+        </div>
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#1e2a3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5z"/><path d="m9 12 2 2 4-4"/></svg></div>
+          <h3>Blindage et serrures multipoints</h3>
+          <p>Après un cambriolage ou en prévention : blindage de porte existante, serrures 3 et 5 points, pose soignée.</p>
+        </div>
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#1e2a3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div>
+          <h3>Boîtes aux lettres</h3>
+          <p>Serrure de boîte aux lettres forcée ou perdue : remplacement en boutique ou sur place, pour particuliers et copropriétés.</p>
+        </div>
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#1e2a3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></div>
+          <h3>Reproduction de clés en boutique</h3>
+          <p>Clés plates, clés de sécurité sur carte de propriété, clés de boîte aux lettres. Passez nous voir rue Duguesclin.</p>
+        </div>
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#1e2a3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5 5L22 9l-3-3-2.3.3zM3 21l9.5-9.5"/><path d="m11 2 3 3"/></svg></div>
+          <h3>Serrurerie et métallerie</h3>
+          <p>Grilles, portails, ferme-portes, gâches électriques, petits ouvrages métalliques sur mesure.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="urgence">
+    <div class="wrap row">
+      <div>
+        <h2>Vous êtes à la porte, sans clé ?</h2>
+        <p>Appelez-nous, on vous dit tout de suite le délai et le tarif.</p>
+      </div>
+      <a class="btn light" href="tel:+33478520785">04 78 52 07 85</a>
+    </div>
+  </div>
+
+  <section id="pourquoi" class="why">
+    <div class="wrap why-grid">
+      <div>
+        <div class="eyebrow">Pourquoi Rep-serrures</div>
+        <h2>Une boutique, une équipe, des visages connus.</h2>
+        <p class="lead">Ce que nos clients retiennent après notre passage.</p>
+        <ul>
+          <li><b>Une entreprise familiale</b><span>Vous parlez à Jordan, à Baptiste, à l'équipe. Pas à une plateforme qui envoie n'importe qui.</span></li>
+          <li><b>Un lieu où venir</b><span>La boutique du 103 rue Duguesclin est ouverte toute la semaine. On peut voir le matériel, poser ses questions, repartir avec ses clés.</span></li>
+          <li><b>Du travail propre, même dans les conditions difficiles</b><span>Blindage posé au dernier étage en pleine canicule, serrure changée en urgence : nos avis racontent des chantiers finis correctement.</span></li>
+          <li><b>Une réponse à chaque avis</b><span>333 avis, 5,0 de moyenne, et une réponse du patron à chacun. C'est la même attention sur le chantier.</span></li>
+        </ul>
+      </div>
+      <div class="photo-panel" role="img" aria-label="Illustration serrurerie">
+        <svg viewBox="0 0 120 120" fill="none" stroke="#d9a441" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="40" cy="60" r="22"/><circle cx="40" cy="60" r="7"/><path d="M62 60h44M94 60v14M106 60v10"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <section id="avis" class="reviews">
+    <div class="wrap">
+      <div class="eyebrow">Avis clients</div>
+      <h2>5,0 sur 333 avis Google.</h2>
+      <p class="lead">Trois exemples récents, parmi les 330 autres.</p>
+      <div class="reviews-grid">
+        <div class="review">
+          <div class="stars">★★★★★</div>
+          <q>Problème avec ma boîte aux lettres, j'ai pu me rendre directement en boutique où j'ai été très bien accueilli. Un dépanneur est intervenu rapidement. Merci à Baptiste pour l'intervention rapide et efficace !</q>
+          <div class="who">Yann D. · avis Google, 2026</div>
+        </div>
+        <div class="review">
+          <div class="stars">★★★★★</div>
+          <q>Suite à un cambriolage, Rep-serrures a posé un blindage de porte et une serrure 5 points en dernier étage, en pleine canicule. Jordan et son technicien sont soucieux du travail propre et bien fait.</q>
+          <div class="who">Marie-Aude G. · avis Google, 2026</div>
+        </div>
+        <div class="review">
+          <div class="stars">★★★★★</div>
+          <q>Excellent, vraiment rien à dire. Professionnalisme, rapidité, sérieux et conscience professionnelle. La serrure de ma porte était cassée, le serrurier m'a tout changé.</q>
+          <div class="who">Samira M. · avis Google, 2026</div>
+        </div>
+      </div>
+      <div class="more"><a class="btn" href="https://www.google.com/maps/place/Rep-serrures/@45.76811,4.847607,17z/data=!4m6!3m5!1s0x47f4eaf3f55bfc89:0xc69cdec4a03418dd!8m2!3d45.76811!4d4.847607!16s%2Fg%2F11c1p61t8h" target="_blank" rel="noopener">Lire tous les avis sur Google</a></div>
+    </div>
+  </section>
+
+  <section id="boutique">
+    <div class="wrap infos-grid">
+      <div>
+        <div class="eyebrow">La boutique</div>
+        <h2>103 rue Duguesclin, Lyon 6e.</h2>
+        <p class="lead">Entre Foch et Saxe-Gambetta, à deux minutes du métro Foch.</p>
+        <table class="hours" aria-label="Horaires d'ouverture">
+          <tr><td>Lundi</td><td>14h00 à 18h00</td></tr>
+          <tr><td>Mardi</td><td>10h00 à 12h00, 14h00 à 18h00</td></tr>
+          <tr><td>Mercredi</td><td>10h00 à 12h00, 14h00 à 18h00</td></tr>
+          <tr><td>Jeudi</td><td>10h00 à 12h00, 14h00 à 18h00</td></tr>
+          <tr><td>Vendredi</td><td>10h00 à 12h00, 14h00 à 18h00</td></tr>
+          <tr class="closed"><td>Samedi</td><td>Fermé</td></tr>
+          <tr class="closed"><td>Dimanche</td><td>Fermé</td></tr>
+        </table>
+        <div class="addr">
+          <b>Rep-serrures</b>
+          <span>103 rue Duguesclin, 69006 Lyon</span>
+          <a href="tel:+33478520785">04 78 52 07 85</a>
+        </div>
+      </div>
+      <div>
+        <iframe class="map" title="Plan d'accès à Rep-serrures" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=103+Rue+Duguesclin+69006+Lyon&output=embed"></iframe>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap row">
+    <div>© <span id="year"></span> Rep-serrures · 103 rue Duguesclin, 69006 Lyon · 04 78 52 07 85</div>
+    <div>Démonstration par <a href="https://vitrinelyon.fr/">Vitrine Lyon</a></div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  (function () {
+    const hours = { 1: [[14,18]], 2: [[10,12],[14,18]], 3: [[10,12],[14,18]], 4: [[10,12],[14,18]], 5: [[10,12],[14,18]], 6: [], 0: [] };
+    const now = new Date(); const d = now.getDay(); const h = now.getHours() + now.getMinutes() / 60;
+    const slots = hours[d] || [];
+    let open = false, next = null;
+    for (const [a, b] of slots) { if (h >= a && h < b) open = true; else if (h < a && next === null) next = a; }
+    const el = document.getElementById('status-text'); const dot = document.querySelector('#status .dot');
+    const amber = () => { dot.style.background = '#f2b134'; dot.style.boxShadow = '0 0 0 4px rgba(242,177,52,.18)'; };
+    if (open) { el.textContent = 'Boutique ouverte en ce moment'; }
+    else if (next !== null) { el.textContent = 'Boutique fermée, rouvre à ' + next + 'h00'; amber(); }
+    else { el.textContent = 'Boutique fermée, appelez pour un dépannage'; amber(); }
+  })();
+</script>
+</body>
+</html>
