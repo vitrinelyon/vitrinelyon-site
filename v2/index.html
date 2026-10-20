@@ -125,7 +125,7 @@
     .price { background: #181c22; border: 1px solid #2a3038; border-radius: 16px; padding: 30px; }
     .price .row { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid #2a3038; }
     .price .row:last-of-type { border-bottom: 0; }
-    .price .big { font-family: var(--display); font-size: 2.6rem; font-weight: 800; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+    .price .big { font-family: var(--display); font-size: 2.6rem; font-weight: 800; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; white-space: nowrap; flex: none; }
     .price .big small { font-family: var(--body); font-weight: 500; font-size: .95rem; color: #9aa3ad; letter-spacing: 0; margin-left: 6px; }
     .price .row span { color: #b9bfc6; font-size: .95rem; text-align: right; max-width: 15em; }
     .price .foot { margin-top: 18px; font-size: .9rem; color: #9aa3ad; }
@@ -197,6 +197,8 @@
       .pledge:last-child { border-bottom: 0; }
       .nav ul { display: none; }
       .phone { width: 260px; }
+      .price .row { flex-direction: column; align-items: flex-start; gap: 6px; }
+      .price .row span { text-align: left; max-width: none; }
       .phone-wrap .hint { display: none; }
       .phone-wrap .tag { right: 50%; transform: translateX(50%); bottom: -8px; }
     }
@@ -245,7 +247,7 @@
       <div class="phone-wrap">
         <div class="hint">Un site livré, en direct. Faites-le défiler.</div>
         <div class="phone">
-          <iframe src="../demos/rep-serrures/" title="Démonstration : site de Rep-serrures, serrurier à Lyon 6e" loading="lazy"></iframe>
+          <iframe src="../demos/rep-serrures/" title="Démonstration : site de Rep-serrures, serrurier à Lyon 6e" loading="eager"></iframe>
         </div>
         <div class="tag">démo rep-serrures · <b>faite en 2 jours</b></div>
       </div>
