@@ -58,6 +58,9 @@
     .nav .btn { padding: 10px 16px; font-size: .95rem; }
 
     .hero { background: var(--navy); color: #fff; padding: 72px 0 64px; position: relative; overflow: hidden; }
+    .hero .devanture { margin-top: 44px; border-radius: 18px; overflow: hidden; border: 1px solid rgba(255,255,255,.14); box-shadow: 0 30px 60px -30px rgba(0,0,0,.7); position: relative; }
+    .hero .devanture img { display: block; width: 100%; height: auto; }
+    .hero .devanture figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 10px 16px; font-size: .86rem; color: #e6ebf1; background: linear-gradient(transparent, rgba(30,42,58,.85)); }
     .hero::after { content: ""; position: absolute; right: -120px; top: -80px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(217,164,65,.28), transparent 60%); pointer-events: none; }
     .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; position: relative; }
     .hero .eyebrow { color: var(--brass-2); }
@@ -92,10 +95,13 @@
     .why li { padding: 14px 0; border-bottom: 1px solid var(--line); display: grid; gap: 2px; }
     .why li b { font-size: 1.02rem; }
     .why li span { color: var(--ink-2); font-size: .96rem; }
-    .photo-panel { border-radius: 18px; background: linear-gradient(160deg, var(--navy-2), var(--navy)); aspect-ratio: 4 / 3; display: grid; place-items: center; position: relative; overflow: hidden; }
-    .photo-panel svg { width: 46%; height: auto; opacity: .9; }
-    .photo-panel::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 70% 20%, rgba(217,164,65,.25), transparent 55%); }
-
+    .photo-panel { border-radius: 18px; overflow: hidden; border: 1px solid var(--line); aspect-ratio: 4 / 3; }
+    .photo-panel img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 28px; }
+    .gallery figure { margin: 0; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: var(--paper); }
+    .gallery img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; }
+    .gallery figcaption { padding: 10px 12px; font-size: .9rem; color: var(--ink-2); }
+        
     .reviews { background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
     .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 32px; }
     .review { background: var(--bg); border: 1px solid var(--line); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px; }
@@ -122,6 +128,7 @@
       .hero { padding: 48px 0 44px; }
       .hero-grid, .why-grid, .infos-grid { grid-template-columns: 1fr; gap: 32px; }
       .services-grid, .reviews-grid { grid-template-columns: 1fr; gap: 14px; }
+      .gallery { grid-template-columns: 1fr 1fr; }
       .nav ul { display: none; }
       .trust .score b { font-size: 2.6rem; }
     }
@@ -144,6 +151,7 @@
       <ul>
         <li><a href="#services">Prestations</a></li>
         <li><a href="#pourquoi">Pourquoi nous</a></li>
+        <li><a href="#realisations">Réalisations</a></li>
         <li><a href="#avis">Avis</a></li>
         <li><a href="#boutique">Boutique</a></li>
       </ul>
@@ -182,13 +190,19 @@
         <div class="tags"><span>entreprise familiale</span><span>professionnalisme</span><span>artisan</span><span>qualité</span></div>
       </aside>
     </div>
+    <div class="wrap">
+      <figure class="devanture">
+        <img src="img/devanture.jpg" alt="La boutique Rep-serrures, 103 rue Duguesclin à Lyon" width="1440" height="809">
+        <figcaption>La boutique, 103 rue Duguesclin, Lyon 6e</figcaption>
+      </figure>
+    </div>
   </section>
 
   <section id="services">
     <div class="wrap">
       <div class="eyebrow">Nos prestations</div>
       <h2>De l'urgence du soir à la porte blindée.</h2>
-      <p class="lead">Un seul interlocuteur, de la boutique au chantier.</p>
+      <p class="lead">Un seul interlocuteur, de la boutique au chantier. Serrures Fichet, Picard, Vachette, Bricard, Vak, Iseo, et serrures certifiées A2P.</p>
       <div class="services-grid">
         <div class="card">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#1e2a3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><circle cx="15" cy="12" r="1.2"/></svg></div>
@@ -241,14 +255,25 @@
         <h2>Une boutique, une équipe, des visages connus.</h2>
         <p class="lead">Ce que nos clients retiennent après notre passage.</p>
         <ul>
-          <li><b>Une entreprise familiale</b><span>Vous parlez à Jordan, à Baptiste, à l'équipe. Pas à une plateforme qui envoie n'importe qui.</span></li>
+          <li><b>Une entreprise familiale</b><span>La famille Torgue et son équipe, Jordan, Baptiste. Vous parlez à des gens, pas à une plateforme qui envoie n'importe qui.</span></li>
           <li><b>Un lieu où venir</b><span>La boutique du 103 rue Duguesclin est ouverte toute la semaine. On peut voir le matériel, poser ses questions, repartir avec ses clés.</span></li>
           <li><b>Du travail propre, même dans les conditions difficiles</b><span>Blindage posé au dernier étage en pleine canicule, serrure changée en urgence : nos avis racontent des chantiers finis correctement.</span></li>
           <li><b>Une réponse à chaque avis</b><span>333 avis, 5,0 de moyenne, et une réponse du patron à chacun. C'est la même attention sur le chantier.</span></li>
         </ul>
       </div>
-      <div class="photo-panel" role="img" aria-label="Illustration serrurerie">
-        <svg viewBox="0 0 120 120" fill="none" stroke="#d9a441" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="40" cy="60" r="22"/><circle cx="40" cy="60" r="7"/><path d="M62 60h44M94 60v14M106 60v10"/></svg>
+      <div class="photo-panel"><img src="img/boutique.jpg" alt="L'intérieur de la boutique Rep-serrures, comptoir et clés" width="1400" height="1050" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section id="realisations">
+    <div class="wrap">
+      <div class="eyebrow">Réalisations</div>
+      <h2>Du travail propre, porte après porte.</h2>
+      <div class="gallery">
+        <figure><img src="img/blindage.jpg" alt="Porte blindée posée par Rep-serrures" loading="lazy"><figcaption>Blindage de porte d'appartement</figcaption></figure>
+        <figure><img src="img/porte-bois.jpg" alt="Porte en bois ancienne avec grille, serrure remplacée" loading="lazy"><figcaption>Serrure sur porte ancienne, sans abîmer le bois</figcaption></figure>
+        <figure><img src="img/cylindre.jpg" alt="Cylindre de sécurité neuf posé sur une porte" loading="lazy"><figcaption>Cylindre haute sécurité</figcaption></figure>
+        <figure><img src="img/porte-metal.jpg" alt="Porte métallique sous un porche en pierre" loading="lazy"><figcaption>Porte métallique sur mesure</figcaption></figure>
       </div>
     </div>
   </section>
