@@ -51,7 +51,8 @@
 
     header { position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 2px solid var(--ink); }
     .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
-    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font-family: "Archivo Black", sans-serif; font-size: 1.15rem; text-transform: uppercase; white-space: nowrap; min-width: 0; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font-family: "Archivo Black", sans-serif; font-size: 1.05rem; text-transform: uppercase; white-space: nowrap; min-width: 0; flex: 1 1 auto; }
+    .brand > span:last-child { overflow: hidden; text-overflow: ellipsis; min-width: 0; }
     .brand .mark { width: 36px; height: 36px; background: var(--yellow); border: 2px solid var(--ink); display: grid; place-items: center; flex: none; box-shadow: 3px 3px 0 var(--ink); }
     .brand .mark svg { width: 20px; height: 20px; }
     .nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; }
@@ -139,7 +140,9 @@
       .nav { gap: 10px; }
       .nav .btn .num { display: none; }
       .nav .btn .short { display: inline; }
-      .brand { font-size: 1rem; }
+      .brand { font-size: .92rem; gap: 8px; }
+      .nav .btn { padding: 9px 12px; }
+      h1 { font-size: 2rem; }
     }
   </style>
 </head>
@@ -151,7 +154,7 @@
   <div class="wrap nav">
     <a class="brand" href="#top" aria-label="Garage Dorian et Fils, accueil">
       <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="#15181c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 13l2-5h14l2 5v5H3z"/><circle cx="7.5" cy="16" r="1.5"/><circle cx="16.5" cy="16" r="1.5"/></svg></span>
-      Garage Dorian & Fils
+      <span>Garage Dorian & Fils</span>
     </a>
     <nav aria-label="Navigation">
       <ul>

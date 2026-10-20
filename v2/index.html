@@ -40,7 +40,7 @@
     p { margin: 0 0 1em; }
     a { color: inherit; }
     img { max-width: 100%; }
-    .wrap { width: min(1180px, 100% - 40px); margin-inline: auto; }
+    .wrap { width: min(1080px, 100% - 32px); margin-inline: auto; }
     section { padding: 96px 0; }
     .lead { font-size: 1.2rem; color: var(--ink-2); max-width: 34em; }
     .lbl { font-family: var(--mono); font-size: .76rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
@@ -66,23 +66,21 @@
 
     /* Hero */
     .hero { padding: 36px 0 28px; position: relative; overflow: hidden; min-height: calc(100svh - 68px); display: flex; align-items: center; }
-    .hero .grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 32px; align-items: center; width: 100%; }
+    .hero .grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 48px; align-items: center; width: 100%; }
     .hero .lead { font-size: 1.08rem; }
     .hero h1 em { font-style: normal; color: var(--blue); }
     .hero .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
     .hero .facts { display: flex; gap: 26px; flex-wrap: wrap; margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--line); }
     .hero .facts div { font-size: .86rem; color: var(--ink-2); }
     .hero .facts b { display: block; font-family: var(--display); font-size: 1.3rem; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
-    /* Téléphone avec une vraie réalisation dedans */
-    .phone-wrap { position: relative; display: grid; justify-items: end; align-items: start; }
-    .phone { width: min(290px, calc((100svh - 200px) * 9 / 19)); min-width: 220px; aspect-ratio: 9 / 19; background: #0b0d10; border-radius: 44px; padding: 11px; box-shadow: 0 40px 80px -40px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.06) inset; position: relative; }
+    /* Téléphone : le site est rendu à 375 px (largeur réelle d'un téléphone) puis réduit à l'échelle du cadre */
+    .phone-wrap { display: grid; justify-items: center; gap: 14px; }
+    .phone { width: min(300px, calc((100svh - 220px) * 9 / 19)); min-width: 230px; aspect-ratio: 9 / 19; background: #0b0d10; border-radius: 44px; padding: 11px; box-shadow: 0 40px 80px -40px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.06) inset; position: relative; }
     .phone::before { content: ""; position: absolute; top: 11px; left: 50%; transform: translateX(-50%); width: 110px; height: 26px; background: #0b0d10; border-radius: 0 0 16px 16px; z-index: 2; }
-    .phone iframe { width: 100%; height: 100%; border: 0; border-radius: 34px; background: #fff; display: block; }
-    .phone-wrap .tag { position: absolute; right: 24px; bottom: 28px; background: var(--ink); color: var(--paper); font-family: var(--mono); font-size: .74rem; padding: 8px 12px; border-radius: 6px; letter-spacing: .04em; }
+    .phone .screen { position: absolute; inset: 11px; border-radius: 34px; overflow: hidden; background: #fff; }
+    .phone iframe { width: 375px; height: 812px; border: 0; display: block; transform-origin: 0 0; transform: scale(var(--s, .74)); }
+    .phone-wrap .tag { background: var(--ink); color: var(--paper); font-family: var(--mono); font-size: .74rem; padding: 8px 12px; border-radius: 6px; letter-spacing: .04em; }
     .phone-wrap .tag b { color: #8fd6ad; }
-    .phone-wrap .hint { position: absolute; left: 0; top: 8px; font-family: var(--mono); font-size: .72rem; color: var(--muted); max-width: 150px; line-height: 1.5; }
-    @media (max-width: 1180px) { .phone-wrap .hint { display: none; } }
-    .phone-wrap .hint::after { content: ""; display: block; width: 60px; height: 1px; background: var(--muted); margin-top: 8px; }
 
     /* Bande métiers */
     .metiers { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 16px 0; overflow: hidden; background: var(--paper-2); }
@@ -187,7 +185,6 @@
       section { padding: 64px 0; }
       .hero { padding: 40px 0 28px; min-height: 0; display: block; }
       .hero .grid, .serp, .offer-grid, .work, .contact-grid { grid-template-columns: 1fr; gap: 32px; }
-      .phone-wrap { justify-items: center; }
       .phone { width: 260px; }
       .timeline { grid-template-columns: 1fr 1fr; border-top: 0; }
       .timeline::before { display: none; }
@@ -245,11 +242,10 @@
         </div>
       </div>
       <div class="phone-wrap">
-        <div class="hint">Un exemple de site, en direct. Faites-le défiler.</div>
-        <div class="phone">
-          <iframe src="../demos/exemple-garage/" title="Exemple fictif : site d'un garage indépendant" loading="eager"></iframe>
-        </div>
-        <div class="tag">exemple fictif · <b>construit en 2 jours</b></div>
+        <div class="phone"><div class="screen">
+          <iframe src="../demos/exemple-garage/" title="Exemple fictif : site d'un garage indépendant, à faire défiler" loading="eager"></iframe>
+        </div></div>
+        <div class="tag">exemple fictif, à faire défiler · <b>construit en 2 jours</b></div>
       </div>
     </div>
   </section>
@@ -418,6 +414,9 @@
   // Apparition au défilement
   var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -8% 0px' }) : null;
   document.querySelectorAll('.rv').forEach(function (el) { if (io) io.observe(el); else el.classList.add('in'); });
+
+  // Téléphone : échelle de l'iframe selon la largeur réelle de l'écran du cadre
+  (function () { var sc = document.querySelector('.phone .screen'); if (!sc) return; function fit() { sc.style.setProperty('--s', (sc.clientWidth / 375).toFixed(4)); } fit(); window.addEventListener('resize', fit); })();
 
   // Chronologie : la barre bleue avance quand la section est visible
   var tl = document.getElementById('timeline');
