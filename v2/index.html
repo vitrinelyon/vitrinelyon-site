@@ -172,8 +172,6 @@
     /* Colophon */
     footer { padding: 36px 0; font-size: .88rem; color: var(--muted); }
     footer .row { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: center; }
-    footer .colophon { font-family: var(--mono); font-size: .74rem; letter-spacing: .03em; }
-    footer .colophon b { color: var(--ink); font-weight: 500; }
     footer a { color: var(--ink-2); }
 
     /* Apparition au défilement : visible au repos, animé seulement si JS et pas de reduced-motion */
@@ -270,7 +268,7 @@
           <div class="res"><div><b>Auto service express</b><span class="st">★★★★☆</span> <span>4,3 · 95 avis</span></div><span class="site">site</span></div>
           <div class="res"><div><b>Carrosserie et mécanique</b><span class="st">★★★★★</span> <span>4,7 · 210 avis</span></div><span class="site">site</span></div>
           <div class="res you"><div><b>Vous</b><span class="st">★★★★★</span> <span>4,8 · 124 avis</span></div><span class="nosite">pas de site</span></div>
-          <p class="note">De bons avis, et le seul qu'on ne peut pas ouvrir. Exemple schématique, chiffres fictifs.</p>
+          <p class="note">De bons avis, et le seul qu'on ne peut pas ouvrir. Exemple schématique.</p>
         </div>
         <div class="serp-card">
           <div class="t"><span>Avec Vitrine Lyon</span><b>Google · "garage villeurbanne"</b></div>
@@ -327,20 +325,20 @@
   <section id="realisations">
     <div class="wrap">
       <div class="lbl">Exemple</div>
-      <h2 class="rv">À quoi ressemble un site livré. Ici, un garage inventé pour l'exemple.</h2>
+      <h2 class="rv">À quoi ressemble une démo. Ici, sur le thème d'un garage.</h2>
       <div class="work rv">
         <div class="shot">
           <iframe src="../demos/exemple-garage/" title="Aperçu de l'exemple de site" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
           <div class="over"><a class="btn" style="border-color:#fff;color:#fff;background:rgba(0,0,0,.35)" href="../demos/exemple-garage/" target="_blank" rel="noopener">Ouvrir l'exemple <span class="arr">→</span></a></div>
         </div>
         <div>
-          <h3>Garage Dorian &amp; Fils, Villeurbanne (fictif)</h3>
-          <p>Un garage indépendant imaginaire, avec de bons avis et pas de site. Tout est inventé, nom, adresse, avis, numéro, pour montrer le résultat sans exposer un vrai commerce avant qu'il ait donné son accord.</p>
+          <h3>Garage Dorian &amp; Fils, Villeurbanne (exemple fictif)</h3>
+          <p>Voici le niveau de ce que vous recevez à l'étape démo. Chaque site est entièrement personnalisé : vos couleurs, vos mots, vos prestations, vos horaires, vos photos. Rien n'est repris d'un client à l'autre.</p>
           <dl>
-            <dt>Point de départ</dt><dd>Ce qu'un commerçant a déjà : une fiche Google, des horaires, des avis.</dd>
-            <dt>Le site</dt><dd>Une page : tarifs lisibles, trois engagements, avis avec les réponses du garage, horaires avec statut ouvert ou fermé en direct, bouton d'appel partout. Aucune photo nécessaire pour la démo, le style fait le travail.</dd>
+            <dt>Le thème</dt><dd>Ici, un garage : affiche d'atelier, jaune et bleu, tarifs en tableau. Pour un salon de coiffure ou un cabinet d'ostéopathie, ce sera un autre ton, une autre palette, une autre structure.</dd>
+            <dt>Ce qui est à vous</dt><dd>Les couleurs, la typographie, les textes, les prestations, les horaires, les avis mis en avant, les photos. Tout est construit pour votre commerce, pas adapté depuis un modèle.</dd>
             <dt>Poids de la page</dt><dd>Moins d'un mégaoctet, photos comprises. Rien à installer, rien à mettre à jour.</dd>
-            <dt>Pour un vrai client</dt><dd>Même démarche, avec ses photos, ses mots et son nom de domaine, en ligne sous une semaine après validation.</dd>
+            <dt>Pour vous</dt><dd>Une démo de ce niveau, à votre image, sous 3 jours, avant toute décision. Puis la mise en ligne sous une semaine après validation.</dd>
           </dl>
         </div>
       </div>
@@ -403,7 +401,6 @@
 <footer class="wrap">
   <div class="row">
     <div>© <span id="year"></span> Vitrine Lyon · Lyon, France · <a href="../mentions-legales">Mentions légales</a></div>
-    <div class="colophon">Cette page : <b id="kb">—</b> transférés · <b id="ms">—</b> · HTML et CSS, aucune dépendance</div>
   </div>
 </footer>
 
@@ -421,17 +418,6 @@
   // Chronologie : la barre bleue avance quand la section est visible
   var tl = document.getElementById('timeline');
   if (tl && 'IntersectionObserver' in window) { new IntersectionObserver(function (es, o) { es.forEach(function (e) { if (e.isIntersecting) { tl.style.setProperty('--p', '100%'); o.disconnect(); } }); }, { threshold: .3 }).observe(tl); }
-
-  // Colophon : poids réel transféré et temps de chargement mesurés par le navigateur
-  window.addEventListener('load', function () {
-    try {
-      var nav = performance.getEntriesByType('navigation')[0];
-      var res = performance.getEntriesByType('resource').filter(function (r) { return !/demos\//.test(r.name); });
-      var bytes = (nav && nav.transferSize || 0) + res.reduce(function (s, r) { return s + (r.transferSize || 0); }, 0);
-      if (bytes > 0) document.getElementById('kb').textContent = Math.round(bytes / 1024) + ' Ko';
-      if (nav && nav.loadEventStart) document.getElementById('ms').textContent = 'chargée en ' + Math.round(nav.loadEventStart) + ' ms';
-    } catch (e) {}
-  });
 
   // Formulaire
   var form = document.getElementById('demo-form');
