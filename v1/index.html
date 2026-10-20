@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vitrine Lyon — Un site clair pour votre commerce</title>
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Site vitrine une page et fiche Google optimisée pour les artisans et commerces de Lyon. Démo gratuite avant tout engagement. 240 € la création, puis 20 €/mois tout compris.">
+  <link rel="canonical" href="https://vitrinelyon.fr/">
+  <meta property="og:title" content="Vitrine Lyon — Un site clair pour votre commerce">
+  <meta property="og:description" content="Vos clients vous cherchent sur Google. Donnez-leur une page claire, rapide, à votre image. Démo gratuite.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vitrinelyon.fr/">
+  <meta property="og:locale" content="fr_FR">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f3a3d'/%3E%3Cpath d='M8 9h16v3H8zM8 14h10v2H8zM8 18h13v2H8zM8 22h7v2H8z' fill='%23f4efe6'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Vitrine Lyon",
+    "description": "Création de sites vitrine une page et optimisation de fiche Google pour les artisans et commerces de Lyon.",
+    "url": "https://vitrinelyon.fr/",
+    "email": "contact.vitrinelyon@gmail.com",
+    "areaServed": "Lyon, Villeurbanne et Métropole de Lyon",
+    "priceRange": "240 € - 450 €"
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #f4efe6;
+      --bg-2: #ebe4d7;
+      --ink: #1f3a3d;
+      --ink-2: #4a5e60;
+      --muted: #7b8a8b;
+      --line: #d8cfbf;
+      --accent: #c2552c;
+      --accent-ink: #fff;
+      --card: #fbf8f2;
+      --ok: #2f7d5a;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3 { font-family: "Fraunces", Georgia, serif; font-weight: 600; line-height: 1.15; margin: 0 0 .5em; letter-spacing: -0.01em; }
+    h1 { font-size: clamp(2.1rem, 5.2vw, 3.6rem); }
+    h2 { font-size: clamp(1.6rem, 3.4vw, 2.3rem); }
+    h3 { font-size: 1.2rem; }
+    p { margin: 0 0 1em; }
+    a { color: inherit; }
+    .wrap { width: min(1080px, 100% - 32px); margin-inline: auto; }
+    section { padding: 72px 0; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .12em; font-size: .76rem; font-weight: 600; color: var(--accent); margin-bottom: 14px; }
+    .lead { font-size: 1.15rem; color: var(--ink-2); max-width: 36em; }
+
+    /* Header */
+    header { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 88%, white); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: "Fraunces", serif; font-weight: 600; font-size: 1.15rem; white-space: nowrap; }
+    .brand svg { width: 28px; height: 28px; }
+    .nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; }
+    .nav ul a { text-decoration: none; color: var(--ink-2); font-weight: 500; font-size: .95rem; }
+    .nav ul a:hover { color: var(--ink); }
+    .btn { display: inline-block; padding: 12px 20px; border-radius: 999px; font-weight: 600; text-decoration: none; border: 1.5px solid var(--ink); color: var(--ink); background: transparent; cursor: pointer; font-family: inherit; font-size: 1rem; transition: transform .12s ease, background .12s ease; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+    .btn.primary:hover { background: #a8471f; }
+    .btn.small { padding: 9px 16px; font-size: .92rem; }
+
+    /* Hero */
+    .hero { padding: 84px 0 64px; }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
+    .hero .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+    .hero .note { font-size: .92rem; color: var(--muted); margin-top: 14px; }
+
+    /* Phone mock */
+    .phone { width: 300px; margin-inline: auto; background: #111; border-radius: 40px; padding: 12px; box-shadow: 0 30px 60px -30px rgba(31,58,61,.55), 0 0 0 1px rgba(0,0,0,.2); position: relative; }
+    .phone::before { content: ""; position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 100px; height: 24px; background: #111; border-radius: 0 0 16px 16px; z-index: 2; }
+    .screen { background: #fff; border-radius: 30px; overflow: hidden; aspect-ratio: 9 / 19; font-size: 11px; line-height: 1.4; color: #222; }
+    .s-hero { background: #2b3a67; color: #fff; padding: 44px 16px 18px; }
+    .s-hero .s-name { font-family: "Fraunces", serif; font-size: 17px; font-weight: 600; }
+    .s-hero .s-tag { opacity: .85; margin-top: 4px; }
+    .s-hero .s-call { margin-top: 12px; display: inline-block; background: #f2b134; color: #222; padding: 6px 11px; border-radius: 999px; font-weight: 600; }
+    .s-row { padding: 12px 16px; border-bottom: 1px solid #eee; }
+    .s-row b { display: block; font-size: 11.5px; margin-bottom: 2px; }
+    .s-stars { color: #e8a317; letter-spacing: 1px; }
+    .s-chip { display: inline-block; background: #eef1f8; color: #2b3a67; padding: 2px 8px; border-radius: 999px; margin: 2px 4px 0 0; font-size: 10px; }
+    .s-map { height: 54px; background: repeating-linear-gradient(45deg, #e9ecef 0 6px, #f6f7f9 6px 12px); position: relative; }
+    .s-map::after { content: "📍"; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -60%); font-size: 16px; }
+
+    /* Problem */
+    .problem { background: var(--ink); color: var(--bg); }
+    .problem .eyebrow { color: #f2b134; }
+    .problem .lead { color: #cfd8d8; }
+    .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 40px; }
+    .problem-grid div { border-top: 1px solid rgba(255,255,255,.18); padding-top: 18px; }
+    .problem-grid b { display: block; font-family: "Fraunces", serif; font-size: 1.25rem; margin-bottom: 6px; }
+    .problem-grid p { color: #cfd8d8; font-size: .98rem; margin: 0; }
+
+    /* Offer */
+    .offer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .offer ul.check { list-style: none; padding: 0; margin: 20px 0 0; }
+    .offer ul.check li { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .offer ul.check li::before { content: "✓"; color: var(--ok); font-weight: 700; flex: none; }
+    .price-card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 28px; }
+    .price-card .big { font-family: "Fraunces", serif; font-size: 2.6rem; font-weight: 600; line-height: 1; }
+    .price-card .big small { font-size: 1rem; font-family: "Instrument Sans", sans-serif; font-weight: 500; color: var(--muted); }
+    .price-card .sep { height: 1px; background: var(--line); margin: 20px 0; }
+    .price-card .muted { color: var(--muted); font-size: .95rem; }
+    .tag { display: inline-block; background: #e7f2ec; color: var(--ok); font-size: .8rem; font-weight: 600; padding: 4px 10px; border-radius: 999px; margin-bottom: 14px; }
+
+    /* Steps */
+    .steps { background: var(--bg-2); }
+    .steps ol { list-style: none; counter-reset: s; padding: 0; margin: 36px 0 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+    .steps li { counter-increment: s; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
+    .steps li::before { content: counter(s, decimal-leading-zero); font-family: "Fraunces", serif; font-size: 1.6rem; font-weight: 600; color: var(--accent); display: block; margin-bottom: 8px; }
+    .steps li b { display: block; margin-bottom: 4px; }
+    .steps li p { margin: 0; color: var(--ink-2); font-size: .96rem; }
+
+    /* About */
+    .about-grid { max-width: 720px; }
+
+    /* FAQ */
+    details { border-top: 1px solid var(--line); padding: 16px 0; }
+    details:last-of-type { border-bottom: 1px solid var(--line); }
+    summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; font-size: 1.3rem; color: var(--accent); flex: none; }
+    details[open] summary::after { content: "–"; }
+    details p { margin: 10px 0 0; color: var(--ink-2); max-width: 60ch; }
+
+    /* Contact */
+    .contact { background: var(--ink); color: var(--bg); }
+    .contact .eyebrow { color: #f2b134; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    .contact p { color: #cfd8d8; }
+    .contact a.mail { color: #fff; font-weight: 600; }
+    form { display: grid; gap: 14px; }
+    label { display: grid; gap: 6px; font-size: .9rem; font-weight: 500; color: #e5ebeb; }
+    input, textarea, select { width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,.22); background: rgba(255,255,255,.06); color: #fff; font: inherit; }
+    input::placeholder, textarea::placeholder { color: #93a3a4; }
+    input:focus, textarea:focus, select:focus { outline: 2px solid #f2b134; outline-offset: 1px; }
+    select option { color: #111; }
+    .form-ok { display: none; background: rgba(47,125,90,.25); border: 1px solid var(--ok); padding: 14px; border-radius: 10px; }
+    .honey { position: absolute; left: -9999px; }
+
+    footer { padding: 28px 0; font-size: .88rem; color: var(--muted); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    footer a { color: var(--ink-2); }
+
+    @media (max-width: 860px) {
+      section { padding: 56px 0; }
+      .hero { padding: 48px 0 40px; }
+      .hero-grid, .offer-grid, .contact-grid { grid-template-columns: 1fr; gap: 36px; }
+      .problem-grid { grid-template-columns: 1fr; gap: 18px; }
+      .steps ol { grid-template-columns: 1fr 1fr; }
+      .nav ul { display: none; }
+      .phone { width: 250px; }
+    }
+    @media (max-width: 520px) {
+      .steps ol { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Vitrine Lyon, accueil">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#1f3a3d"/><path d="M8 9h16v3H8zM8 14h10v2H8zM8 18h13v2H8zM8 22h7v2H8z" fill="#f4efe6"/></svg>
+      Vitrine Lyon
+    </a>
+    <nav aria-label="Navigation">
+      <ul>
+        <li><a href="#offre">L'offre</a></li>
+        <li><a href="#methode">Comment ça marche</a></li>
+        <li><a href="#apropos">Qui je suis</a></li>
+        <li><a href="#faq">Questions</a></li>
+      </ul>
+    </nav>
+    <a class="btn primary small" href="#contact">Démo gratuite</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Artisans et commerces</div>
+        <h1>Vos clients vous cherchent sur Google. Donnez-leur une page qui leur répond.</h1>
+        <p class="lead">Un site vitrine clair, rapide, à votre image, avec votre fiche Google remise au propre. En ligne en une semaine. Vous voyez la démo avant de payer quoi que ce soit.</p>
+        <div class="cta">
+          <a class="btn primary" href="#contact">Recevoir ma démo gratuite</a>
+          <a class="btn" href="#offre">Voir ce qui est inclus</a>
+        </div>
+        <p class="note">Sans engagement. Si la démo ne vous plaît pas, vous ne devez rien.</p>
+      </div>
+      <div aria-hidden="true">
+        <div class="phone">
+          <div class="screen">
+            <div class="s-hero">
+              <div class="s-name">Atelier Bertrand</div>
+              <div class="s-tag">Serrurerie et dépannage, Lyon 6e</div>
+              <span class="s-call">📞 Appeler maintenant</span>
+            </div>
+            <div class="s-row"><b>Ouvert aujourd'hui</b> 8h30 à 12h, 14h à 18h30</div>
+            <div class="s-row"><b>Nos services</b><span class="s-chip">Ouverture de porte</span><span class="s-chip">Blindage</span><span class="s-chip">Reproduction de clés</span><span class="s-chip">Serrure A2P</span></div>
+            <div class="s-row"><b>Ce que disent nos clients</b><span class="s-stars">★★★★★</span> 4,9 sur 180 avis Google<br>« Venu en 20 minutes un dimanche, prix annoncé respecté. »</div>
+            <div class="s-map"></div>
+            <div class="s-row"><b>12 rue Exemple, 69006 Lyon</b>Métro Foch, à 2 min</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="problem">
+    <div class="wrap">
+      <div class="eyebrow">Le constat</div>
+      <h2>Sans site, vous existez seulement quand on vous connaît déjà.</h2>
+      <p class="lead">Un client potentiel tape votre métier et votre quartier. Il tombe alors sur trois concurrents avec un site propre, des horaires et un bouton pratique pour appeler. L'objectif, c'est de vous mettre en avant et d'être encore plus visible.</p>
+      <div class="problem-grid">
+        <div><b>Une page, pas un labyrinthe</b><p>Ce dont vos clients ont besoin tient sur un écran de téléphone : ce que vous faites, où, quand, et comment vous joindre.</p></div>
+        <div><b>Vos vraies photos, vos vrais mots</b><p>Pas de banque d'images, pas de texte passe-partout. Votre atelier, votre ton, vos avis.</p></div>
+        <div><b>Une fiche Google qui travaille pour vous</b><p>Catégories, horaires, photos, réponses aux avis. C'est souvent là que tout se joue, et c'est inclus.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="offre" class="offer">
+    <div class="wrap offer-grid">
+      <div>
+        <div class="eyebrow">L'offre</div>
+        <h2>Tout ce qu'il faut, rien de superflu.</h2>
+        <p class="lead">Un prix fixe pour la création, un petit abonnement pour que ça reste en ligne, à jour et entre de bonnes mains.</p>
+        <ul class="check">
+          <li>Site une page, conçu pour le téléphone d'abord</li>
+          <li>Vos photos, vos textes retravaillés, vos avis Google mis en avant</li>
+          <li>Bouton d'appel, itinéraire, horaires, formulaire de contact</li>
+          <li>Fiche Google Business vérifiée, complétée et optimisée</li>
+          <li>Nom de domaine en .fr, hébergement rapide et sécurisé (https)</li>
+          <li>Référencement local de base : votre métier, votre quartier</li>
+          <li>Modifications incluses chaque mois : horaires, tarifs, photos</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <span class="tag">Tarif unique, tout compris</span>
+        <div class="big">240 € <small>une fois</small></div>
+        <p class="muted">Création du site et de la fiche Google. Payable après validation de la démo.</p>
+        <div class="sep"></div>
+        <div class="big">20 € <small>par mois</small></div>
+        <p class="muted">Domaine, hébergement, sécurité, et vos modifications. Sans engagement de durée, résiliable à tout moment.</p>
+        <div class="sep"></div>
+        <p class="muted">Le domaine est à votre nom. Si vous arrêtez, vous gardez votre site et vos fichiers.</p>
+        <a class="btn primary" href="#contact" style="margin-top:8px">Demander ma démo</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="methode" class="steps">
+    <div class="wrap">
+      <div class="eyebrow">Comment ça marche</div>
+      <h2>Vous voyez le résultat avant de décider.</h2>
+      <ol>
+        <li><b>Vous me contactez</b><p>Un message, le nom de votre commerce, c'est tout. Je regarde votre fiche Google et vos concurrents.</p></li>
+        <li><b>Je fais la démo</b><p>Sous 3 jours, vous recevez un lien vers une première version de votre site. Gratuite, sans engagement.</p></li>
+        <li><b>On ajuste ensemble</b><p>Vos photos, vos formulations, vos services. Deux allers-retours en général.</p></li>
+        <li><b>Mise en ligne</b><p>Domaine, hébergement, fiche Google. Vous payez à la mise en ligne, pas avant.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="apropos">
+    <div class="wrap about-grid">
+      <div>
+        <div class="eyebrow">Qui je suis</div>
+        <h2>Je m'appelle Matthieu. Je conçois des sites pour les artisans et commerçants qui n'ont pas le temps de s'en occuper.</h2>
+        <p>Basé à Lyon et formé au développement web, actuellement en école d'ingénieurs, j'ai créé Vitrine Lyon avec une conviction simple : un commerce de proximité mérite une présence en ligne aussi sérieuse que son travail, sans y consacrer des heures ni payer le prix d'une agence.</p>
+        <p>Je limite volontairement le nombre de clients suivis en parallèle. Chaque site est conçu sur mesure, et chaque demande de modification reçoit une réponse sous 24 heures ouvrées.</p>
+        <p><a href="#contact">Écrivez-moi</a>, je vous réponds sous 24 heures.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="eyebrow">Questions fréquentes</div>
+      <h2>Ce qu'on me demande souvent.</h2>
+      <details>
+        <summary>Pourquoi une seule page ?</summary>
+        <p>Parce que c'est ce que vos clients lisent. Ils veulent savoir ce que vous faites, où vous êtes, quand vous êtes ouvert et comment vous appeler. Une page bien faite le dit en dix secondes. Si votre activité justifie plusieurs pages, on en parle.</p>
+      </details>
+      <details>
+        <summary>Qu'est-ce que je dois fournir ?</summary>
+        <p>Quelques photos de votre activité prises avec votre téléphone, vos horaires, et dix minutes pour me dire ce qui vous rend différent. Le reste, je m'en occupe.</p>
+      </details>
+      <details>
+        <summary>Combien de temps ça prend ?</summary>
+        <p>La démo sous 3 jours ouvrés. La mise en ligne complète sous une semaine une fois la démo validée, le temps que le nom de domaine et la fiche Google soient activés.</p>
+      </details>
+      <details>
+        <summary>Et si je veux arrêter l'abonnement ?</summary>
+        <p>Vous arrêtez quand vous voulez, sans frais. Le nom de domaine est à vous, et je vous transmets les fichiers du site pour que vous puissiez l'héberger ailleurs.</p>
+      </details>
+      <details>
+        <summary>Que comprend l'abonnement mensuel ?</summary>
+        <p>Le nom de domaine, l'hébergement, le certificat de sécurité, la surveillance que tout fonctionne, et les petites modifications courantes : nouveaux horaires, un tarif qui change, une photo à remplacer.</p>
+      </details>
+      <details>
+        <summary>Comment je paie ?</summary>
+        <p>Par virement, sur facture. Vous ne payez la création qu'à la mise en ligne, après avoir validé la démo.</p>
+      </details>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <div class="eyebrow">Contact</div>
+        <h2>Demandez votre démo gratuite.</h2>
+        <p>Dites-moi le nom de votre commerce et votre métier. Je regarde votre présence en ligne actuelle et je vous envoie une première version de votre site sous 3 jours, sans engagement.</p>
+        <p>Ou par mail : <a class="mail" href="mailto:contact.vitrinelyon@gmail.com">contact.vitrinelyon@gmail.com</a></p>
+      </div>
+      <form id="demo-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="bbe32a7c-ce92-4610-8d44-5920fe491788">
+        <input type="hidden" name="subject" value="Demande de démo — Vitrine Lyon">
+        <input type="hidden" name="from_name" value="Vitrine Lyon">
+        <input type="checkbox" name="botcheck" class="honey" tabindex="-1" autocomplete="off">
+        <label>Votre commerce
+          <input type="text" name="commerce" placeholder="Ex. : Atelier Bertrand, serrurerie" required>
+        </label>
+        <label>Votre nom
+          <input type="text" name="name" placeholder="Prénom et nom" required>
+        </label>
+        <label>Votre e-mail
+          <input type="email" name="email" placeholder="vous@exemple.fr" required>
+        </label>
+        <label>Votre téléphone (facultatif)
+          <input type="tel" name="telephone" placeholder="06 …">
+        </label>
+        <label>Un mot sur votre activité (facultatif)
+          <textarea name="message" rows="4" placeholder="Ce que vous faites, votre quartier, ce qui vous manque aujourd'hui"></textarea>
+        </label>
+        <button class="btn primary" type="submit">Envoyer ma demande</button>
+        <div class="form-ok" id="form-ok">Merci, c'est bien reçu. Je vous réponds sous 24 heures.</div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <div>© <span id="year"></span> Vitrine Lyon · Lyon, France</div>
+  <div><a href="../mentions-legales">Mentions légales</a></div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const form = document.getElementById('demo-form');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type=submit]');
+    btn.disabled = true; btn.textContent = 'Envoi…';
+    try {
+      const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+      if (!res.ok) throw new Error('bad status');
+      form.reset();
+      document.getElementById('form-ok').style.display = 'block';
+      btn.textContent = 'Envoyé';
+    } catch (err) {
+      btn.disabled = false; btn.textContent = 'Envoyer ma demande';
+      alert("L'envoi n'a pas fonctionné. Écrivez-moi directement à contact.vitrinelyon@gmail.com");
+    }
+  });
+</script>
+</body>
+</html>
