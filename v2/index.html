@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light only">
   <meta name="robots" content="noindex">
   <title>Vitrine Lyon — Sites vitrines pour artisans et commerces</title>
   <meta name="description" content="Vitrine Lyon conçoit des sites une page, rapides et clairs, pour les artisans et commerces de Lyon, avec la fiche Google remise au propre. Démo gratuite avant tout engagement. 240 € la création, 20 € par mois.">
@@ -13,6 +14,7 @@
   <style>
     /* Direction : papier froid, encre, un seul bleu outremer. Grotesque large pour les titres, mono pour les étiquettes techniques. */
     :root {
+      color-scheme: light only;
       --paper: #f4f4f1;
       --paper-2: #ebebe6;
       --ink: #111418;
@@ -27,12 +29,7 @@
       --body: "Public Sans", "Segoe UI", system-ui, sans-serif;
       --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
     }
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) {
-        --paper: #101316; --paper-2: #171b20; --ink: #eef0ee; --ink-2: #b9bfc6; --muted: #848c95; --line: #2a3038;
-        --blue: #7b8dff; --blue-ink: #a9b4ff; --blue-soft: #1c2250; --ok: #5fcf8f; color-scheme: dark;
-      }
-    }
+    /* Thème clair imposé, quel que soit le réglage du système. */
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
