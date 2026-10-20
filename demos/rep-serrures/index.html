@@ -51,7 +51,8 @@
 
     header { position: sticky; top: 0; z-index: 10; background: rgba(245,243,238,.94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
     .nav { display: flex; align-items: center; justify-content: space-between; height: 70px; gap: 16px; }
-    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font-family: "Source Serif 4", serif; font-weight: 700; font-size: 1.3rem; white-space: nowrap; color: var(--navy); line-height: 1.1; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font-family: "Source Serif 4", serif; font-weight: 700; font-size: 1.3rem; white-space: nowrap; color: var(--navy); line-height: 1.1; min-width: 0; }
+    .brand > span:last-child { overflow: hidden; text-overflow: ellipsis; }
     .brand .mark { width: 38px; height: 38px; border-radius: 8px; background: var(--red); display: grid; place-items: center; flex: none; }
     .brand .mark svg { width: 22px; height: 22px; }
     .brand small { display: block; font-family: "Public Sans", sans-serif; font-size: .66rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-top: 3px; }
@@ -173,9 +174,12 @@
       .trust .score b { font-size: 2.8rem; }
     }
     @media (max-width: 430px) {
+      .nav { gap: 10px; }
       .nav .btn .num { display: none; }
       .nav .btn .short { display: inline; }
-      .brand { font-size: 1.12rem; }
+      .nav .btn { padding: 9px 12px; }
+      .brand { font-size: 1.12rem; gap: 9px; }
+      .brand small { display: none; }
     }
   </style>
 </head>
