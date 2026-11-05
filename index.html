@@ -112,6 +112,7 @@
 
     /* Téléphone 3D */
     .stage { perspective: 1400px; display: grid; place-items: center; position: relative; }
+    @media (min-width: 961px) { .stage { justify-items: start; } }
     .phone { width: min(320px, calc((100svh - 260px) * 9 / 19)); min-width: 240px; aspect-ratio: 9 / 19; background: var(--ink-deep); border-radius: 46px; padding: 11px; box-shadow: 0 60px 100px -40px rgba(10,14,30,.6), 0 0 0 1px rgba(255,255,255,.08) inset; position: relative; transform-style: preserve-3d; will-change: transform; }
     .phone .screen { position: absolute; inset: 11px; border-radius: 36px; overflow: hidden; background: #fff; }
     .phone iframe { width: 375px; height: 812px; border: 0; display: block; transform-origin: 0 0; transform: scale(var(--s, .74)); }
@@ -119,7 +120,8 @@
     .chip { position: absolute; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; font-size: .84rem; box-shadow: 0 24px 50px -24px rgba(17,20,24,.45); display: flex; gap: 10px; align-items: center; white-space: nowrap; will-change: transform; }
     .chip b { font-family: var(--display); font-weight: 800; letter-spacing: -0.02em; font-size: 1.05rem; }
     .chip .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 4px rgba(31,122,77,.18); }
-    .chip.c1 { right: calc(50% + 135px); top: 12%; } .chip.c2 { right: calc(50% + 150px); top: 44%; } .chip.c3 { right: calc(50% + 120px); bottom: 12%; }
+    .chip.c1 { left: auto; right: calc(8px - var(--gutter)); top: 12%; } .chip.c2 { left: auto; right: calc(4px - var(--gutter)); top: 44%; } .chip.c3 { left: auto; right: calc(16px - var(--gutter)); bottom: 12%; }
+    @media (min-width: 961px) and (max-width: 1280px) { .chip { font-size: .78rem; padding: 8px 10px; } }
     .cue { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); font-family: var(--mono); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); display: flex; flex-direction: column; align-items: center; gap: 10px; }
     .cue i { width: 1px; height: 44px; background: linear-gradient(var(--blue), transparent); display: block; animation: cue 1.8s var(--ease-out) infinite; transform-origin: top; }
     @keyframes cue { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(0); transform-origin: bottom; } }
