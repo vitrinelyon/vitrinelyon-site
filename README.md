@@ -2,7 +2,7 @@
 
 Site vitrine de l'activité. HTML statique, aucune dépendance, aucun build.
 
-- `index.html` : la page (refonte motion du 2026-11-04, GSAP via cdnjs) ; `v4/` : essai du 2026-11-05 (réalisations en carrousel épinglé, HUD mono, curseur, bloc « sous le capot »), non liée, non indexée ; `v2/` : page du 2026-10-20 archivée, non indexée ; `v1/` : première page archivée, non indexée ; `demos/exemple-garage/` : exemple fictif intégré à la page
+- `index.html` : la page (refonte motion du 2026-11-04, GSAP via cdnjs) ; `v4/` : essai du 2026-11-05 (réalisations en pile collante sans épinglage, HUD mono, curseur, bloc « sous le capot »), non liée, non indexée ; `v2/` : page du 2026-10-20 archivée, non indexée ; `v1/` : première page archivée, non indexée ; `demos/exemple-garage/` : exemple fictif intégré à la page
 - `_redirects` : `/v3/` (ancienne adresse de la page actuelle) renvoie vers `/`
 - `mentions-legales.html` : mentions légales (SIREN 131 685 026, RCS Lyon)
 - `_headers` : en-têtes de sécurité pour Cloudflare Pages

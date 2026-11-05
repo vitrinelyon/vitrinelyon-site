@@ -17,11 +17,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js">
+  <link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js">
+  <link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js">
   <style>
-    /* V4 (essai du 2026-11-05, non liée, noindex) = page principale + réalisations en carrousel épinglé, HUD mono, curseur, sorties de section, bloc « sous le capot ».
+    /* V4 (essai du 2026-11-05, non liée, noindex) = page principale + réalisations en pile collante, HUD mono, curseur, sorties de section, bloc « sous le capot ».
+       Révision du 2026-11-05 soir : plus aucune section épinglée, la page descend toujours à la molette ; le constat, la méthode et les réalisations se jouent pendant la traversée de l'écran.
        Base : page principale du 2026-11-04 (ex-v3) : même charte (papier froid, encre, un seul bleu outremer), poussée à fond.
-       Typographie éditoriale géante, sections épinglées au défilement, motion GSAP.
+       Typographie éditoriale géante, motion GSAP pilotée par le défilement, jamais bloquée.
        Tout le contenu est lisible sans JavaScript ; les animations ne s'ajoutent que si JS et pas de reduced-motion. */
     :root {
       color-scheme: light only;
@@ -36,7 +40,7 @@
       --gutter: clamp(16px, 4vw, 56px);
     }
     * { box-sizing: border-box; }
-    html.no-motion { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; }
     body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: clip; }
     h1, h2, h3 { font-family: var(--display); letter-spacing: -0.035em; line-height: .96; margin: 0 0 .5em; text-wrap: balance; }
     h1 { font-size: clamp(2.4rem, 3.9vw, 4.2rem); font-weight: 900; }
@@ -131,7 +135,7 @@
     .metiers .track span::before { content: "✦"; color: var(--blue); margin-right: 36px; font-size: .8em; }
     @keyframes slide { to { transform: translateX(-50%); } }
 
-    /* Constat : section épinglée, la carte "Vous" remonte en tête */
+    /* Constat : la carte "Vous" remonte en tête pendant que la section traverse l'écran */
     .constat .pinbox { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: center; min-height: 80svh; }
     .serp { background: #fff; will-change: transform; border: 1px solid var(--line); border-radius: 22px; padding: 22px; box-shadow: 0 50px 100px -50px rgba(17,20,24,.35); position: relative; }
     .serp .t { font-family: var(--mono); font-size: .74rem; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 14px; display: flex; justify-content: space-between; }
@@ -153,7 +157,7 @@
     .constat .state > span { grid-area: 1 / 1; font-family: var(--mono); font-size: .8rem; color: var(--muted); }
     .constat .state .after { opacity: 0; color: var(--blue); }
 
-    /* Méthode : défilement horizontal épinglé */
+    /* Méthode : les cartes glissent horizontalement pendant que la section traverse l'écran */
     .methode { background: var(--ink); color: var(--paper); overflow: clip; }
     .methode .lbl { color: #9aa3ad; } .methode .lbl::before { background: #7b8dff; }
     .methode .lead { color: #b9bfc6; }
@@ -189,18 +193,6 @@
     .ticket .count { font: inherit; color: inherit; }
     .ticket .foot { margin: 18px 0 0; font-size: .9rem; color: #9aa3ad; position: relative; z-index: 1; }
     .ticket .btn { margin-top: 14px; position: relative; z-index: 1; }
-
-    /* Réalisation (ancienne section Exemple, CSS conservé) */
-    .real .shot { position: relative; will-change: transform; border-radius: 22px; overflow: hidden; border: 1px solid var(--line); background: var(--paper-2); aspect-ratio: 16 / 10; box-shadow: 0 60px 100px -50px rgba(17,20,24,.45); clip-path: inset(0 round 22px); }
-    .real .bar { height: 38px; background: #fff; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; padding: 0 14px; font-family: var(--mono); font-size: .72rem; color: var(--muted); }
-    .real .bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--line); display: block; }
-    .real .bar .url { margin-left: 10px; background: var(--paper); border-radius: 6px; padding: 4px 10px; flex: 1; }
-    .real .shot img { width: 100%; height: calc(100% - 38px); object-fit: cover; object-position: top; display: block; pointer-events: none; }
-    .real .shot .over { position: absolute; inset: 0; display: grid; place-items: end start; padding: 20px; background: linear-gradient(transparent 60%, rgba(0,0,0,.5)); }
-    .real .grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: clamp(32px, 5vw, 72px); align-items: center; margin-top: 40px; }
-    .real dl { margin: 18px 0 0; display: grid; grid-template-columns: auto 1fr; gap: 10px 18px; font-size: .95rem; }
-    .real dt { font-family: var(--mono); font-size: .74rem; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; padding-top: 3px; }
-    .real dd { margin: 0; color: var(--ink-2); }
 
     /* Engagements : numéros géants */
     .pledges { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 48px; border-top: 1px solid var(--line); }
@@ -258,9 +250,10 @@
       html.cur-on, html.cur-on a, html.cur-on button, html.cur-on summary, html.cur-on label { cursor: none; }
     }
 
-    /* ===== V4 : Réalisations, carrousel épinglé au défilement =====
-       Sans JS ou sans motion : liste verticale classique. Avec motion sur desktop : section épinglée,
-       un seul thème visible à la fois, titre lettre par lettre, maquette qui change, compteur et barres. */
+    /* ===== V4 : Réalisations, pile collante =====
+       Sans JS ou sans motion : liste verticale classique. Avec motion sur desktop : le cadre (titre, compteur, barres, lien)
+       reste collé en haut pendant que les cinq thèmes défilent dessous, un écran chacun : la page descend toujours,
+       le fond se teinte, le titre arrive lettre par lettre, la maquette dérive un peu plus vite que la page. */
     .works .pin { position: relative; }
     .works .head, .works .list { width: min(1240px, 100% - 2 * var(--gutter)); margin-inline: auto; }
     .works .head { margin-bottom: 48px; }
@@ -278,6 +271,7 @@
     .wk .lnk::after, .works .more::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--blue); transform-origin: left; }
     .wk .lnk:hover::after, .works .more:hover::after { animation: ul .6s var(--ease-out); }
     @keyframes ul { 0% { transform: scaleX(1); transform-origin: right; } 49% { transform: scaleX(0); transform-origin: right; } 50% { transform: scaleX(0); transform-origin: left; } 100% { transform: scaleX(1); transform-origin: left; } }
+    .works .more { display: none; } /* visible seulement dans la pile collante (desktop + motion) */
     .mock { width: 100%; max-width: 760px; aspect-ratio: 16 / 10; border-radius: 18px; overflow: hidden; background: #fff; border: 1px solid var(--line); box-shadow: 0 60px 100px -50px rgba(17,20,24,.45); display: flex; flex-direction: column; margin-bottom: 24px; }
     .mock .mb { height: 34px; flex: none; background: #fff; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 7px; padding: 0 12px; font-family: var(--mono); font-size: .68rem; color: var(--muted); }
     .mock .mb i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); display: block; }
@@ -293,14 +287,17 @@
     .mock .mc i { flex: 1; height: clamp(30px, 4.6vw, 56px); border-radius: 10px; background: color-mix(in srgb, var(--t) 12%, transparent); display: block; }
     .mock .mc i:first-child { background: var(--a); }
     @media (min-width: 961px) {
-      html.js:not(.no-motion) .works { padding: 0; }
-      html.js:not(.no-motion) .works .pin { height: 100svh; overflow: clip; background: var(--paper); }
+      html.js:not(.no-motion) .works { padding: 0; background: var(--paper); }
+      html.js:not(.no-motion) .works .pin { position: sticky; top: 0; height: 100svh; z-index: 2; pointer-events: none; }
+      html.js:not(.no-motion) .works .more { pointer-events: auto; }
       html.js:not(.no-motion) .works .head { position: absolute; left: var(--gutter); top: 100px; width: min(52%, 640px); margin: 0; }
       html.js:not(.no-motion) .works .ghost { display: block; position: absolute; right: var(--gutter); top: 106px; font-family: var(--mono); font-size: .8rem; letter-spacing: .14em; color: var(--muted); font-variant-numeric: tabular-nums; }
       html.js:not(.no-motion) .works .ghost span { color: var(--ink); font-weight: 500; }
-      html.js:not(.no-motion) .works .list { position: absolute; left: var(--gutter); right: var(--gutter); bottom: 13vh; width: auto; margin: 0; display: block; height: 0; }
-      html.js:not(.no-motion) .wk { position: absolute; left: 0; bottom: 0; width: min(44%, 560px); visibility: hidden; }
-      html.js:not(.no-motion) .wk .mock { position: absolute; left: calc(100% + clamp(32px, 5vw, 80px)); bottom: 0; width: min(46vw, 720px); max-width: none; margin: 0; transform: rotate(-2deg); transform-origin: bottom left; will-change: transform; }
+      html.js:not(.no-motion) .works .list { position: relative; z-index: 1; width: auto; margin: -100svh 0 0; display: block; }
+      html.js:not(.no-motion) .wk { position: relative; height: 100svh; }
+      html.js:not(.no-motion) .wk .in { position: absolute; left: var(--gutter); right: var(--gutter); bottom: 13vh; height: 0; }
+      html.js:not(.no-motion) .wk .txt { position: absolute; left: 0; bottom: 0; width: min(44%, 560px); }
+      html.js:not(.no-motion) .wk .mock { position: absolute; left: calc(min(44%, 560px) + clamp(32px, 5vw, 80px)); bottom: 0; width: min(46vw, 720px); max-width: none; margin: 0; transform: rotate(-2deg); transform-origin: bottom left; will-change: transform; }
       html.js:not(.no-motion) .works .bars { display: flex; position: absolute; left: var(--gutter); bottom: 9vh; gap: 6px; }
       html.js:not(.no-motion) .works .bars i { width: 36px; height: 2px; background: var(--line); position: relative; overflow: hidden; display: block; }
       html.js:not(.no-motion) .works .bars i::after { content: ""; position: absolute; inset: 0; background: var(--blue); transform: scaleX(0); transform-origin: left; transition: transform .5s var(--ease-out); }
@@ -489,47 +486,47 @@
         <h2 data-split>Un métier, un thème. Jamais le même site deux fois.</h2>
       </div>
       <div class="ghost" aria-hidden="true"><span id="wk-num">01</span> / 05</div>
-      <div class="list" id="wk-list">
-        <article class="wk" data-bg="#f5efd9" style="--a:#f2c53d;--b:#15181d;--t:#ffffff">
-          <div class="mock" aria-hidden="true"><div class="mb"><i></i><i></i><i></i><span>garage-dorian.fr</span></div><picture><source media="(max-width: 960px)" srcset="../img/exemple-garage-mobile.webp"><img src="../img/exemple-garage.webp" width="1320" height="760" alt="" loading="lazy" decoding="async"></picture></div>
-          <div class="meta"><span>Thème 01 · garage</span><span class="imp">exemple fictif</span></div>
-          <h3>Garage Dorian &amp; Fils</h3>
-          <p class="sub">Villeurbanne · mécanique et carrosserie. Affiche d'atelier, jaune et bleu, tarifs en tableau, bouton d'appel en évidence.</p>
-          <div class="tags"><span>bouton d’appel</span><span>tarifs</span><span>avis Google</span><span>horaires</span></div>
-          <a class="lnk" href="../demos/exemple-garage/" target="_blank" rel="noopener">Ouvrir l’exemple complet ↗</a>
-        </article>
-        <article class="wk" data-bg="#f7e9ea" style="--a:#e39aa6;--b:#fbf3ef;--t:#2a1f1c">
-          <div class="mock" aria-hidden="true"><div class="mb"><i></i><i></i><i></i><span>salon-capucine.fr</span></div><div class="mh"><div class="mn"><b>Capucine</b><i>Prendre rendez-vous</i></div><div class="mt">Coupe, couleur, barbe.<br>Sans attendre.</div><div class="mc"><i></i><i></i><i></i></div></div></div>
-          <div class="meta"><span>Thème 02 · coiffure</span><span class="imp">exemple fictif</span></div>
-          <h3>Salon Capucine</h3>
-          <p class="sub">Croix-Rousse · coiffure et barbier. Crème et rose poudré, grandes photos, prise de rendez-vous en un geste.</p>
-          <div class="tags"><span>prendre rendez-vous</span><span>prestations</span><span>avis</span><span>Instagram</span></div>
-        </article>
-        <article class="wk" data-bg="#e9efe9" style="--a:#7fa98a;--b:#f1f4ef;--t:#1f2a24">
-          <div class="mock" aria-hidden="true"><div class="mb"><i></i><i></i><i></i><span>osteo-du-parc.fr</span></div><div class="mh"><div class="mn"><b>Ostéo du Parc</b><i>Prendre rendez-vous</i></div><div class="mt">Dos, nuque, sport :<br>on <em>regarde</em> ensemble.</div><div class="mc"><i></i><i></i><i></i></div></div></div>
-          <div class="meta"><span>Thème 03 · ostéopathie</span><span class="imp">exemple fictif</span></div>
-          <h3>Ostéo du Parc</h3>
-          <p class="sub">Lyon 6e · cabinet d’ostéopathie. Sauge et blanc cassé, beaucoup d’air, horaires et motifs de consultation lisibles en dix secondes.</p>
-          <div class="tags"><span>prise de rendez-vous</span><span>motifs</span><span>accès</span><span>tarifs conventionnés</span></div>
-        </article>
-        <article class="wk" data-bg="#f5e7e1" style="--a:#d9663f;--b:#2a1d1a;--t:#fbf1ea">
-          <div class="mock" aria-hidden="true"><div class="mb"><i></i><i></i><i></i><span>fleurs-de-saone.fr</span></div><div class="mh"><div class="mn"><b>Fleurs de Saône</b><i>Commander</i></div><div class="mt">Des bouquets<br>du <em>matin</em>.</div><div class="mc"><i></i><i></i><i></i></div></div></div>
-          <div class="meta"><span>Thème 04 · fleuriste</span><span class="imp">exemple fictif</span></div>
-          <h3>Fleurs de Saône</h3>
-          <p class="sub">Vieux Lyon · fleuriste. Brun profond et terracotta, bouquets en pleine page, commande par téléphone ou en boutique.</p>
-          <div class="tags"><span>commander</span><span>bouquets du moment</span><span>livraison</span><span>horaires</span></div>
-        </article>
-        <article class="wk" data-bg="#e6e9f7" style="--a:#ffd23f;--b:#1b2fa0;--t:#ffffff">
-          <div class="mock" aria-hidden="true"><div class="mb"><i></i><i></i><i></i><span>serrurerie-des-pentes.fr</span></div><div class="mh"><div class="mn"><b>Serrurerie des Pentes</b><i>Appeler</i></div><div class="mt">Porte claquée ?<br>Là en <em>une heure</em>.</div><div class="mc"><i></i><i></i><i></i></div></div></div>
-          <div class="meta"><span>Thème 05 · serrurerie</span><span class="imp">exemple fictif</span></div>
-          <h3>Serrurerie des Pentes</h3>
-          <p class="sub">Lyon 1er · serrurier, dépannage. Bleu franc et jaune, numéro géant, intervention en une heure mise en avant.</p>
-          <div class="tags"><span>appel direct</span><span>urgence 7j/7</span><span>tarifs affichés</span><span>zone d’intervention</span></div>
-        </article>
-      </div>
       <div class="bars" id="wk-bars" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></div>
       <a class="more mag" href="#contact">Demander le mien <span class="arr">→</span></a>
     </div>
+    <div class="list" id="wk-list">
+        <article class="wk" data-bg="#f5efd9" style="--a:#f2c53d;--b:#15181d;--t:#ffffff">
+          <div class="in"><div class="mock" aria-hidden="true"><div class="mb"><i></i><i></i><i></i><span>garage-dorian.fr</span></div><picture><source media="(max-width: 960px)" srcset="../img/exemple-garage-mobile.webp"><img src="../img/exemple-garage.webp" width="1320" height="760" alt="" loading="lazy" decoding="async"></picture></div>
+          <div class="txt"><div class="meta"><span>Thème 01 · garage</span><span class="imp">exemple fictif</span></div>
+          <h3>Garage Dorian &amp; Fils</h3>
+          <p class="sub">Villeurbanne · mécanique et carrosserie. Affiche d'atelier, jaune et bleu, tarifs en tableau, bouton d'appel en évidence.</p>
+          <div class="tags"><span>bouton d’appel</span><span>tarifs</span><span>avis Google</span><span>horaires</span></div>
+          <a class="lnk" href="../demos/exemple-garage/" target="_blank" rel="noopener">Ouvrir l’exemple complet ↗</a></div></div>
+        </article>
+        <article class="wk" data-bg="#f7e9ea" style="--a:#e39aa6;--b:#fbf3ef;--t:#2a1f1c">
+          <div class="in"><div class="mock" aria-hidden="true"><div class="mb"><i></i><i></i><i></i><span>salon-capucine.fr</span></div><div class="mh"><div class="mn"><b>Capucine</b><i>Prendre rendez-vous</i></div><div class="mt">Coupe, couleur, barbe.<br>Sans attendre.</div><div class="mc"><i></i><i></i><i></i></div></div></div>
+          <div class="txt"><div class="meta"><span>Thème 02 · coiffure</span><span class="imp">exemple fictif</span></div>
+          <h3>Salon Capucine</h3>
+          <p class="sub">Croix-Rousse · coiffure et barbier. Crème et rose poudré, grandes photos, prise de rendez-vous en un geste.</p>
+          <div class="tags"><span>prendre rendez-vous</span><span>prestations</span><span>avis</span><span>Instagram</span></div></div></div>
+        </article>
+        <article class="wk" data-bg="#e9efe9" style="--a:#7fa98a;--b:#f1f4ef;--t:#1f2a24">
+          <div class="in"><div class="mock" aria-hidden="true"><div class="mb"><i></i><i></i><i></i><span>osteo-du-parc.fr</span></div><div class="mh"><div class="mn"><b>Ostéo du Parc</b><i>Prendre rendez-vous</i></div><div class="mt">Dos, nuque, sport :<br>on <em>regarde</em> ensemble.</div><div class="mc"><i></i><i></i><i></i></div></div></div>
+          <div class="txt"><div class="meta"><span>Thème 03 · ostéopathie</span><span class="imp">exemple fictif</span></div>
+          <h3>Ostéo du Parc</h3>
+          <p class="sub">Lyon 6e · cabinet d’ostéopathie. Sauge et blanc cassé, beaucoup d’air, horaires et motifs de consultation lisibles en dix secondes.</p>
+          <div class="tags"><span>prise de rendez-vous</span><span>motifs</span><span>accès</span><span>tarifs conventionnés</span></div></div></div>
+        </article>
+        <article class="wk" data-bg="#f5e7e1" style="--a:#d9663f;--b:#2a1d1a;--t:#fbf1ea">
+          <div class="in"><div class="mock" aria-hidden="true"><div class="mb"><i></i><i></i><i></i><span>fleurs-de-saone.fr</span></div><div class="mh"><div class="mn"><b>Fleurs de Saône</b><i>Commander</i></div><div class="mt">Des bouquets<br>du <em>matin</em>.</div><div class="mc"><i></i><i></i><i></i></div></div></div>
+          <div class="txt"><div class="meta"><span>Thème 04 · fleuriste</span><span class="imp">exemple fictif</span></div>
+          <h3>Fleurs de Saône</h3>
+          <p class="sub">Vieux Lyon · fleuriste. Brun profond et terracotta, bouquets en pleine page, commande par téléphone ou en boutique.</p>
+          <div class="tags"><span>commander</span><span>bouquets du moment</span><span>livraison</span><span>horaires</span></div></div></div>
+        </article>
+        <article class="wk" data-bg="#e6e9f7" style="--a:#ffd23f;--b:#1b2fa0;--t:#ffffff">
+          <div class="in"><div class="mock" aria-hidden="true"><div class="mb"><i></i><i></i><i></i><span>serrurerie-des-pentes.fr</span></div><div class="mh"><div class="mn"><b>Serrurerie des Pentes</b><i>Appeler</i></div><div class="mt">Porte claquée ?<br>Là en <em>une heure</em>.</div><div class="mc"><i></i><i></i><i></i></div></div></div>
+          <div class="txt"><div class="meta"><span>Thème 05 · serrurerie</span><span class="imp">exemple fictif</span></div>
+          <h3>Serrurerie des Pentes</h3>
+          <p class="sub">Lyon 1er · serrurier, dépannage. Bleu franc et jaune, numéro géant, intervention en une heure mise en avant.</p>
+          <div class="tags"><span>appel direct</span><span>urgence 7j/7</span><span>tarifs affichés</span><span>zone d’intervention</span></div></div></div>
+        </article>
+      </div>
   </section>
 
   <section id="capot" class="capot" data-hud="Sous le capot">
@@ -615,7 +612,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollToPlugin.min.js"></script>
 <script>
 (function () {
   var doc = document.documentElement;
@@ -669,21 +665,9 @@
   });
 
   if (!hasGsap || reduce) return;
-  gsap.registerPlugin(ScrollTrigger, SplitText, ScrollToPlugin);
+  gsap.registerPlugin(ScrollTrigger, SplitText);
   ScrollTrigger.config({ ignoreMobileResize: true });
 
-  // Liens d'ancre : défilement piloté par GSAP (le défilement doux natif est interrompu par les sections épinglées)
-  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
-    a.addEventListener('click', function (e) {
-      var id = a.getAttribute('href'); if (id.length < 2) return;
-      var target = document.querySelector(id); if (!target) return;
-      e.preventDefault();
-      var y = (id === '#top') ? 0 : target.getBoundingClientRect().top + window.scrollY;
-      var d = Math.min(1.6, .5 + Math.abs(y - window.scrollY) / 4000);
-      gsap.to(window, { scrollTo: { y: y, autoKill: false }, duration: d, ease: 'power3.inOut', onComplete: function () { ScrollTrigger.update(); } });
-      if (history.replaceState) history.replaceState(null, '', id === '#top' ? location.pathname : id);
-    });
-  });
   var mm = gsap.matchMedia();
   var desktop = window.matchMedia('(min-width: 961px)').matches;
   var fine = window.matchMedia('(pointer: fine)').matches;
@@ -746,10 +730,10 @@
     gsap.from(el.children, { autoAlpha: 0, y: 24, duration: .7, stagger: .09, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
   });
 
-  // Constat : la carte "Vous" remonte en tête pendant le défilement (épinglé sur desktop)
+  // Constat : la carte "Vous" remonte en tête pendant que la section traverse l'écran (desktop, la page continue de descendre)
   mm.add('(min-width: 961px)', function () {
     var rows = 64 + 8;
-    var tl = gsap.timeline({ scrollTrigger: { trigger: '#constat', start: 'top top', end: '+=140%', pin: '#constat-pin', pinSpacing: true, scrub: .8, refreshPriority: 3 } });
+    var tl = gsap.timeline({ scrollTrigger: { trigger: '#constat', start: 'top 70%', end: 'bottom 45%', scrub: .8 } });
     tl.to('#serp', { rotate: -1.5, scale: 1.02, duration: .3 }, 0)
       .to('#list .res:not(.you)', { y: rows, duration: 1, ease: 'power2.inOut' }, .3)
       .to('#you', { y: -3 * rows, borderStyle: 'solid', borderColor: '#2742d6', backgroundColor: '#e4e8fb', duration: 1, ease: 'power2.inOut' }, .3)
@@ -774,12 +758,13 @@
       .to('#stamp', { scale: 1, duration: .5, ease: 'back.out(2)' }, 1.6);
   });
 
-  // Méthode : défilement horizontal épinglé (desktop), cascade verticale (mobile)
+  // Méthode : les cartes glissent horizontalement pendant que la section traverse l'écran (desktop), cascade verticale (mobile)
   mm.add('(min-width: 961px)', function () {
     var track = document.getElementById('track'), rail = document.getElementById('rail');
     var dist = function () { return track.scrollWidth - rail.clientWidth; };
-    gsap.to(track, { x: function () { return -dist(); }, ease: 'none', scrollTrigger: { trigger: '#methode', start: 'top top', end: function () { return '+=' + (dist() + 300); }, pin: true, scrub: 1, invalidateOnRefresh: true, anticipatePin: 1, refreshPriority: 2 } });
-    gsap.to('#rail-p', { scaleX: 1, ease: 'none', scrollTrigger: { trigger: '#methode', start: 'top top', end: function () { return '+=' + (dist() + 300); }, scrub: 1 } });
+    var st = { trigger: '#methode', start: 'top 35%', end: 'bottom 45%', scrub: 1, invalidateOnRefresh: true };
+    gsap.to(track, { x: function () { return -dist(); }, ease: 'none', scrollTrigger: st });
+    gsap.to('#rail-p', { scaleX: 1, ease: 'none', scrollTrigger: st });
     gsap.from('.card', { autoAlpha: 0, y: 40, stagger: .1, duration: .8, ease: 'power3.out', scrollTrigger: { trigger: '#methode', start: 'top 70%', once: true } });
   });
   mm.add('(max-width: 960px)', function () {
@@ -822,40 +807,42 @@
     gsap.to(w, { autoAlpha: .12, y: -40, ease: 'none', scrollTrigger: { trigger: w, start: 'bottom 40%', end: 'bottom top', scrub: true } });
   });
 
-  // ===== V4 : Réalisations, carrousel épinglé (desktop) =====
+  // ===== V4 : Réalisations, pile collante (desktop) =====
+  // Le cadre (#works-pin) est collé en haut par CSS ; les cinq articles défilent dessous, un écran chacun.
+  // Rien n'est épinglé : la page descend toujours. À l'arrivée de chaque thème : titre lettre par lettre, maquette qui monte,
+  // fond qui se teinte, compteur et barres. Pendant la traversée : la maquette et le texte dérivent un peu plus vite que la page.
   mm.add('(min-width: 961px)', function () {
-    var items = gsap.utils.toArray('.wk'), n = items.length, cur = -1, tlc = null;
-    var num = document.getElementById('wk-num'), bars = gsap.utils.toArray('#wk-bars i'), pin = document.getElementById('works-pin');
+    var items = gsap.utils.toArray('.wk'), cur = -1;
+    var num = document.getElementById('wk-num'), bars = gsap.utils.toArray('#wk-bars i'), sec = document.getElementById('realisations');
     var splits = items.map(function (it) { return new SplitText(it.querySelector('h3'), { type: 'chars,words', charsClass: 'char' }); });
-    var rest = function (it) { return it.querySelectorAll('.meta, .sub, .tags, .lnk'); };
-    function show(i, dir) {
-      if (i === cur) return;
-      var prev = cur; cur = i; dir = dir < 0 ? -1 : 1;
-      if (tlc) tlc.kill();
-      items.forEach(function (it, k) { if (k !== i && k !== prev) gsap.set(it, { visibility: 'hidden' }); });
-      var it = items[i], tl = tlc = gsap.timeline({ defaults: { ease: 'power3.out' } });
-      if (prev > -1) {
-        var p = items[prev];
-        tl.to(splits[prev].chars, { y: -18 * dir, autoAlpha: 0, duration: .28, ease: 'power2.in', stagger: { each: .01, from: dir > 0 ? 'start' : 'end' } }, 0)
-          .to(rest(p), { autoAlpha: 0, y: -10 * dir, duration: .25, ease: 'power2.in' }, 0)
-          .to(p.querySelector('.mock'), { y: -50 * dir, autoAlpha: 0, rotate: -5, duration: .4, ease: 'power2.in' }, 0)
-          .set(p, { visibility: 'hidden' });
-      }
-      tl.set(it, { visibility: 'visible' }, prev > -1 ? .22 : 0)
-        .fromTo(splits[i].chars, { y: 22 * dir, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .7, stagger: { each: .018, from: dir > 0 ? 'start' : 'end' } }, '<')
-        .fromTo(rest(it), { autoAlpha: 0, y: 12 * dir }, { autoAlpha: 1, y: 0, duration: .55, stagger: .07 }, '<.12')
-        .fromTo(it.querySelector('.mock'), { y: 70 * dir, autoAlpha: 0, rotate: 1 }, { y: 0, autoAlpha: 1, rotate: -2, duration: .9, ease: 'expo.out' }, '<');
-      gsap.to(pin, { backgroundColor: it.dataset.bg, duration: .9, ease: 'power2.out', overwrite: 'auto' });
+    function active(i) {
+      if (i === cur) return; cur = i;
+      gsap.to(sec, { backgroundColor: items[i].dataset.bg, duration: .9, ease: 'power2.out', overwrite: 'auto' });
       num.textContent = ('0' + (i + 1)).slice(-2);
       bars.forEach(function (b, k) { b.classList.toggle('on', k <= i); });
     }
-    ScrollTrigger.create({
-      trigger: '#works-pin', start: 'top top', end: '+=' + (n * 100) + '%', pin: true, anticipatePin: 1, refreshPriority: 1,
-      onUpdate: function (st) { show(Math.min(n - 1, Math.floor(st.progress * n)), st.direction); },
-      onEnter: function () { if (cur < 0) show(0, 1); }
+    items.forEach(function (it, i) {
+      var box = it.querySelector('.in'), mock = it.querySelector('.mock'), rest = it.querySelectorAll('.meta, .sub, .tags, .lnk');
+      var tl = gsap.timeline({ paused: true, defaults: { ease: 'power3.out' } });
+      tl.fromTo(splits[i].chars, { y: 22, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .7, stagger: .018 }, 0)
+        .fromTo(rest, { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: .55, stagger: .07 }, .12)
+        .fromTo(mock, { y: 70, autoAlpha: 0, rotate: 1 }, { y: 0, autoAlpha: 1, rotate: -2, duration: .9, ease: 'expo.out' }, .12);
+      ScrollTrigger.create({ trigger: it, start: 'top 65%', onEnter: function () { tl.play(); }, onLeaveBack: function () { tl.reverse(); } });
+      ScrollTrigger.create({ trigger: it, start: 'top 50%', end: 'bottom 50%', onToggle: function (st) { if (st.isActive) active(i); } });
+      // Traversée (0 = l'article arrive par le bas, .5 = il remplit l'écran, 1 = il est parti par le haut) : le texte et la maquette
+      // dérivent un peu plus vite que la page, puis le thème s'efface avant d'atteindre le titre collé en haut (sauf le dernier, qui part avec le cadre).
+      var drift = gsap.timeline({ scrollTrigger: { trigger: it, start: 'top bottom', end: 'bottom top', scrub: true } });
+      drift.fromTo(box, { y: 40 }, { y: -40, ease: 'none', duration: 1 }, 0)
+        .fromTo(mock, { yPercent: 10 }, { yPercent: -10, ease: 'none', duration: 1 }, 0);
+      if (i < items.length - 1) drift.fromTo(box, { autoAlpha: 1 }, { autoAlpha: 0, ease: 'power1.in', duration: .09 }, .52);
     });
-    gsap.from('#works-pin .ghost, #works-pin .bars, #works-pin .more', { autoAlpha: 0, y: 12, duration: .8, stagger: .1, scrollTrigger: { trigger: '#works-pin', start: 'top 60%', once: true } });
-    return function () { splits.forEach(function (s) { s.revert(); }); items.forEach(function (it) { gsap.set([it, it.querySelector('.mock')].concat(Array.prototype.slice.call(rest(it))), { clearProps: 'all' }); }); gsap.set(pin, { clearProps: 'backgroundColor' }); };
+    active(0);
+    gsap.from('#works-pin .ghost, #works-pin .bars, #works-pin .more', { autoAlpha: 0, y: 12, duration: .8, stagger: .1, scrollTrigger: { trigger: '#realisations', start: 'top 60%', once: true } });
+    return function () {
+      splits.forEach(function (s) { s.revert(); });
+      items.forEach(function (it) { gsap.set([it.querySelector('.in'), it.querySelector('.mock')].concat(Array.prototype.slice.call(it.querySelectorAll('.meta, .sub, .tags, .lnk'))), { clearProps: 'all' }); });
+      gsap.set(sec, { clearProps: 'backgroundColor' });
+    };
   });
   mm.add('(max-width: 960px)', function () {
     gsap.utils.toArray('.wk').forEach(function (it) {
@@ -881,11 +868,6 @@
 
   // Pied : le mot géant glisse et se remplit
   gsap.from('#giant', { x: 80, autoAlpha: 0, duration: 1.2, ease: 'expo.out', scrollTrigger: { trigger: 'footer', start: 'top 90%', once: true } });
-
-  // V4 : les déclencheurs sont créés dans le désordre (HUD, sorties de section avant l'épinglage des réalisations) :
-  // on trie par priorité (sections épinglées d'abord, de haut en bas) pour que chacun tienne compte des pin-spacers.
-  ScrollTrigger.sort();
-  ScrollTrigger.refresh();
 
   // Recalcul après polices et iframes
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
