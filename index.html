@@ -112,16 +112,10 @@
 
     /* Téléphone 3D */
     .stage { perspective: 1400px; display: grid; place-items: center; position: relative; }
-    @media (min-width: 961px) { .stage { justify-items: start; } }
     .phone { width: min(320px, calc((100svh - 260px) * 9 / 19)); min-width: 240px; aspect-ratio: 9 / 19; background: var(--ink-deep); border-radius: 46px; padding: 11px; box-shadow: 0 60px 100px -40px rgba(10,14,30,.6), 0 0 0 1px rgba(255,255,255,.08) inset; position: relative; transform-style: preserve-3d; will-change: transform; }
     .phone .screen { position: absolute; inset: 11px; border-radius: 36px; overflow: hidden; background: #fff; }
     .phone iframe { width: 375px; height: 812px; border: 0; display: block; transform-origin: 0 0; transform: scale(var(--s, .74)); }
     .phone .glare { position: absolute; inset: 0; border-radius: 46px; background: linear-gradient(115deg, rgba(255,255,255,.18), transparent 38%); pointer-events: none; z-index: 3; }
-    .chip { position: absolute; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; font-size: .84rem; box-shadow: 0 24px 50px -24px rgba(17,20,24,.45); display: flex; gap: 10px; align-items: center; white-space: nowrap; will-change: transform; }
-    .chip b { font-family: var(--display); font-weight: 800; letter-spacing: -0.02em; font-size: 1.05rem; }
-    .chip .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 4px rgba(31,122,77,.18); }
-    .chip.c1 { left: auto; right: calc(8px - var(--gutter)); top: 12%; } .chip.c2 { left: auto; right: calc(4px - var(--gutter)); top: 44%; } .chip.c3 { left: auto; right: calc(16px - var(--gutter)); bottom: 12%; }
-    @media (min-width: 961px) and (max-width: 1280px) { .chip { font-size: .78rem; padding: 8px 10px; } }
     .cue { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); font-family: var(--mono); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); display: flex; flex-direction: column; align-items: center; gap: 10px; }
     .cue i { width: 1px; height: 44px; background: linear-gradient(var(--blue), transparent); display: block; animation: cue 1.8s var(--ease-out) infinite; transform-origin: top; }
     @keyframes cue { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(0); transform-origin: bottom; } }
@@ -254,7 +248,6 @@
       .constat .pinbox { min-height: 0; gap: 40px; }
       .stage { margin-top: 20px; }
       .phone { width: 250px; }
-      .chip.c1 { left: 0; right: auto; } .chip.c2 { right: 0; left: auto; } .chip.c3 { left: 4%; right: auto; }
       .nav ul { display: none; }
       .facts { flex-wrap: wrap; gap: 14px; }
       .facts div { flex: 1 1 140px; border-right: 0; margin-right: 0; }
@@ -273,7 +266,6 @@
     @media (max-width: 520px) {
       .nav .btn .long { display: none; } .nav .btn .short { display: inline; }
       .res { font-size: .86rem; }
-      .chip { font-size: .78rem; padding: 8px 10px; }
     }
     @media (prefers-reduced-motion: reduce) {
       .metiers .track, .cue i { animation: none; }
@@ -331,9 +323,6 @@
           <div class="screen"><iframe src="demos/exemple-garage/" title="Exemple de démo, thème garage, à faire défiler" loading="eager"></iframe></div>
           <div class="glare"></div>
         </div>
-        <div class="chip c1" data-depth="2"><span class="dot"></span><span>Démo prête en <b>3 jours</b></span></div>
-        <div class="chip c2" data-depth="3"><b>4,8 ★</b><span>fiche Google à jour</span></div>
-        <div class="chip c3" data-depth="1.5"><b>0,8 Mo</b><span>la page entière</span></div>
       </div>
     </div>
     <div class="cue" aria-hidden="true"><i></i>défiler</div>
@@ -580,8 +569,10 @@
   var split = new SplitText(h1.querySelectorAll('.line'), { type: 'words' });
   gsap.set(split.words, { yPercent: 110, rotate: 2, transformOrigin: 'left bottom' });
   gsap.set('.hero-in', { autoAlpha: 0, y: 22 });
-  gsap.set('#phone', { y: 60, autoAlpha: 0, rotateY: -14, rotateX: 6 });
-  gsap.set('.chip', { autoAlpha: 0, scale: .8 });
+  // Inclinaison 3D uniquement sur desktop à la souris : un iframe incliné en 3D ne reçoit plus les clics sur sa moitié basse (Chrome),
+  // donc le téléphone se redresse à plat au survol, et reste à plat sur tactile.
+  var tilt = fine && desktop;
+  gsap.set('#phone', { y: 60, autoAlpha: 0, rotateY: tilt ? -14 : 0, rotateX: tilt ? 6 : 0 });
 
   var intro = gsap.timeline({ defaults: { ease: 'expo.out' } });
   intro.from('.intro .w span', { yPercent: 110, duration: .9 })
@@ -591,24 +582,17 @@
     .set('.intro', { display: 'none' })
     .to(split.words, { yPercent: 0, rotate: 0, duration: 1.1, stagger: .06 }, '-=.55')
     .to('.hero-in', { autoAlpha: 1, y: 0, duration: .9, stagger: .1 }, '-=.8')
-    .to('#phone', { y: 0, autoAlpha: 1, rotateY: -8, rotateX: 4, duration: 1.3 }, '-=1')
-    .to('.chip', { autoAlpha: 1, scale: 1, duration: .6, stagger: .12, ease: 'back.out(1.6)' }, '-=.7');
+    .to('#phone', { y: 0, autoAlpha: 1, rotateY: tilt ? -8 : 0, rotateX: tilt ? 4 : 0, duration: 1.3 }, '-=1');
   // Sécurité : si l'onglet est en arrière-plan et que l'animation est gelée, on affiche l'état final
   setTimeout(function () { if (intro.progress() < 1) intro.progress(1); }, 4500);
   document.addEventListener('visibilitychange', function () { if (!document.hidden && intro.progress() < 1) intro.progress(1); });
 
-  // Téléphone : flottement + inclinaison à la souris (desktop) + parallaxe au défilement
+  // Téléphone : flottement + redressement au survol (desktop) + parallaxe au défilement
   gsap.to('#phone', { y: -10, duration: 2.6, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: 3 });
-  document.querySelectorAll('.chip').forEach(function (c, i) { gsap.to(c, { y: (i % 2 ? 8 : -8), duration: 2.2 + i * .4, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: 3 }); });
-  if (fine && desktop) {
-    var stage = document.getElementById('stage'), qx = gsap.quickTo('#phone', 'rotateY', { duration: .6, ease: 'power3' }), qy = gsap.quickTo('#phone', 'rotateX', { duration: .6, ease: 'power3' });
-    var chips = document.querySelectorAll('.chip');
-    stage.addEventListener('mousemove', function (e) {
-      var r = stage.getBoundingClientRect(), dx = (e.clientX - r.left) / r.width - .5, dy = (e.clientY - r.top) / r.height - .5;
-      qx(-8 + dx * 18); qy(4 - dy * 14);
-      chips.forEach(function (c) { var d = +c.dataset.depth || 1; gsap.to(c, { x: dx * 14 * d, y: dy * 10 * d, duration: .8, overwrite: 'auto' }); });
-    }, { passive: true });
-    stage.addEventListener('mouseleave', function () { qx(-8); qy(4); chips.forEach(function (c) { gsap.to(c, { x: 0, y: 0, duration: .8, overwrite: 'auto' }); }); });
+  if (tilt) {
+    var stage = document.getElementById('stage');
+    stage.addEventListener('mouseenter', function () { gsap.to('#phone', { rotateY: 0, rotateX: 0, duration: .5, ease: 'power3.out', overwrite: 'auto' }); });
+    stage.addEventListener('mouseleave', function () { gsap.to('#phone', { rotateY: -8, rotateX: 4, duration: .7, ease: 'power3.out', overwrite: 'auto' }); });
   }
   gsap.to('.hero .blob', { y: 120, ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true } });
   gsap.to('.hero .grid', { y: -60, ease: 'none', scrollTrigger: { trigger: '#hero', start: '40% top', end: 'bottom top', scrub: true } });
